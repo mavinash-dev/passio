@@ -1,11 +1,29 @@
-import Link from 'next/link'
 import Image from 'next/image'
 import { Product } from '@/lib/types'
 
-export default function ProductCard({ product, handle }: { product: Product; handle: string }) {
+export default function ProductCard({
+  product,
+  creatorInstagram,
+}: {
+  product: Product
+  creatorInstagram?: string | null
+}) {
+  const href = product.buy_link
+    ? `/go/${product.id}`
+    : creatorInstagram
+    ? `https://instagram.com/${creatorInstagram}`
+    : '#'
+
+  const isExternal = !product.buy_link && creatorInstagram
+
   return (
-    <Link href={`/${handle}/${product.slug}`} className="block group">
-      <div className="bg-[#161616] rounded-2xl overflow-hidden border border-[#2C2C2C] hover:border-[#444] transition-all duration-300 hover:-translate-y-0.5">
+    <a
+      href={href}
+      target={isExternal ? '_blank' : undefined}
+      rel={isExternal ? 'noopener noreferrer' : undefined}
+      className="block group"
+    >
+      <div className="bg-[#161616] rounded-2xl overflow-hidden border border-[#2C2C2C] hover:border-[#C9A96E] transition-all duration-200 hover:-translate-y-0.5">
         {/* Image */}
         <div className="relative aspect-[3/4] w-full bg-[#1E1E1E]">
           {product.photo_url ? (
@@ -20,6 +38,13 @@ export default function ProductCard({ product, handle }: { product: Product; han
               <span className="text-4xl opacity-20">◻</span>
             </div>
           )}
+
+          {/* Buy overlay on hover */}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-200 flex items-end justify-center pb-3 opacity-0 group-hover:opacity-100">
+            <span className="px-4 py-1.5 bg-[#C9A96E] text-[#0C0C0C] text-xs font-bold rounded-full">
+              {product.buy_link ? 'Buy now' : 'Contact to order'}
+            </span>
+          </div>
         </div>
 
         {/* Info */}
@@ -32,6 +57,6 @@ export default function ProductCard({ product, handle }: { product: Product; han
           )}
         </div>
       </div>
-    </Link>
+    </a>
   )
 }

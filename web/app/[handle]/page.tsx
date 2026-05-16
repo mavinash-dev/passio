@@ -152,7 +152,7 @@ export default async function CreatorPage({
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                   {products.map((product) => (
-                    <ProductCard key={product.id} product={product} handle={creator.handle} />
+                    <ProductCard key={product.id} product={product} creatorInstagram={creator.instagram_handle} />
                   ))}
                 </div>
               </div>
