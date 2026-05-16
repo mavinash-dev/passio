@@ -6,62 +6,81 @@
 
 ## What This Project Is
 
-**One-liner:** A discovery platform for products made by Indian creators and influencers — where passion-built brands find their buyers.
+**One-liner:** A curated discovery platform for Indian creator-owned physical brands — that grows into the operating system for creator brands in India.
 
-**Problem:** Indian creators are building real products (skincare, food, fitness, fashion) but their reach is capped at their existing followers. Buyers want to shop from creators they trust but there's no single destination to discover creator-owned brands.
+**The real problem:** Indian creators sell physical products (skincare, food, fashion, fitness) but their reach is permanently capped at their existing followers. WhatsApp ordering and a bio link is their entire commerce infrastructure.
 
-**Solution:** A two-sided discovery platform. Creators list their products and get a shareable profile page (`passio.in/[handle]`). Buyers browse, discover, and click through to buy — directly from the creator's own store. We handle nothing except visibility and discovery.
+**Phase 1 solution:** Passio manually curates and lists creator brands. We build their profile and product pages. We drive traffic through Passio's own Instagram. Creators discover their listing, see real click data, and claim it. No cold sign-up form.
 
-**Positioning:** Nykaa for all categories — but specifically for creator-owned brands, not corporate labels. Like LTK in the US but for creator-OWNED products, not affiliate links.
+**Long-term trajectory (Beacons.ai model for India, physical products):**
+1. Discovery directory (now)
+2. Creator storefront — their store lives ON Passio
+3. Payments — Passio processes the transaction (UPI, COD, card)
+4. Creator brand OS — analytics, inventory, brand deals
 
-**Name:** "Passio" is a working slug. Final brand name TBD — shortlist: Raunaq, Yakeen, Zarb, Crayvo, Umang, Flayr.
+**Name:** "Passio" is a working slug. Final brand TBD — shortlist: Raunaq, Crayvo, Flayr.
+
+---
+
+## What We Learned (Don't Repeat These Mistakes)
+
+- **Creators will NOT put Passio in their bio** — it sends their followers to competitor brands. Do not build assuming this.
+- **SEO is 12–18 months out** — not a launch strategy. Passio's own Instagram is the Day 1 traffic engine.
+- **Self-serve listing = cold start death** — empty marketplace, no traffic, no creator engagement. Curated model first.
+- **No redirect tracking = no proof of value** — creators need to see clicks before they engage. Tracker is Phase 1, not Phase 2.
 
 ---
 
 ## Target Users
 
-- **Creators (supply):** Indian micro to mid-tier creators (10K–500K followers) with their own product or brand. Incentive: free visibility + new customers beyond their existing audience.
-- **Buyers (demand):** 18–35 Indian consumers who follow creators and trust their taste. Incentive: one destination to discover and shop creator-owned brands.
-- **Not targeting:** Big celebrity brands, white-label resellers, international creators.
+- **Creators (supply):** Indian micro to mid-tier creators (10K–500K followers) who OWN a physical product brand. Not affiliates, not resellers.
+- **Buyers (demand):** 18–35 Indian consumers open to discovering and buying from creator-owned brands.
+- **Not targeting:** Celebrity brands, drop-shippers, resellers, digital-only creators, international creators.
 
 ---
 
 ## Current Phase & Status
 
-**Phase:** Phase 1 — Define → Build
+**Phase:** Phase 1 — Build
 **Status:** Active
 **Last worked on:** 2026-05-16
 
 **What's done:**
-- [x] Core idea validated and scoped
-- [x] Full project foundation created (PRD, ARCH, DESIGN, STATUS, CLAUDE.md)
+- [x] PRD v0.2 signed off
+- [x] ARCH.md written
+- [x] DESIGN.md written
 
 **What's next:**
 - [ ] Finalise brand name + domain
 - [ ] Scaffold Next.js project
-- [ ] Build creator listing flow
-- [ ] Build public profile + product pages
-- [ ] Build discovery feed
 
 ---
 
-## Core Features (Phase 1)
+## Phase 1 MVP — Strict Scope
 
-1. **Creator Listing** — Creator signs up, creates brand profile, lists products with photos + descriptions + price range + "where to buy" link (their own store)
-2. **Public Creator Profile** — `passio.in/[handle]` — shareable page showing all their products. Creator puts this in their Instagram bio.
-3. **Product Pages** — Individual product pages with one CTA: "Where to buy →" (redirects to creator's store)
-4. **Discovery Feed** — Home page with category browsing, trending creators, new listings
-5. **Creator Dashboard** — Manage listings, preview their public page, copy share link
+1. **Creator profile page** (`/[handle]`) — Passio builds this, not the creator
+2. **Product pages** (`/[handle]/[product-slug]`) — individual, SEO indexed
+3. **Redirect tracker** (`/go/[product-id]`) — every "where to buy" click logged
+4. **Home / discovery feed** — manually curated, editorial, no algorithm
+5. **Internal listing tool** (`/admin`) — for Avinash to add/edit creator brands manually
+
+**NOT in Phase 1:**
+- Claim flow / creator login — Phase 2 (requires auth)
+- Self-serve creator sign-up — Phase 2
+- Creator analytics dashboard — Phase 2
+- Search — Phase 2
+- Buyer accounts — Phase 2
+- Payments or checkout of any kind — Phase 3+
+- Discovery algorithm or ranking engine — Phase 2+
 
 ---
 
-## What We Are NOT
+## Growth Model
 
-- NOT a store — no cart, no checkout, no payments
-- NOT a logistics platform — creator handles shipping/returns entirely
-- NOT taking commission in Phase 1 — pure free listing
-- NOT an analytics tool (see CreatorPulse — separate project on hold)
-- NOT for affiliate links — creator must OWN the product/brand
+- **Day 1:** Passio's Instagram posts one creator brand feature per day → drives traffic to their Passio page
+- **Month 2–3:** Creator sees click data → claims listing → tells other creators → word of mouth
+- **Month 6+:** SEO begins contributing as domain authority grows
+- **Month 6–9:** Self-serve listing opens with social proof ("creators get X clicks/month on average")
 
 ---
 
@@ -70,47 +89,39 @@
 - **Frontend:** Next.js 15 (App Router) + Tailwind CSS
 - **Backend:** Next.js API routes
 - **DB:** PostgreSQL via Supabase
-- **Auth:** Clerk (creators only — buyers browse without auth)
-- **Hosting:** Vercel
+- **Auth:** None in Phase 1. Admin tool protected by `ADMIN_SECRET` env var.
+- **Hosting:** Local in Phase 1. Vercel when ready to go public.
 - **Images:** Supabase Storage
-- **Key principle:** SSR/ISR on all public pages — SEO is the growth engine
+- **Key principle:** SSR/ISR on all public pages — SEO must work, even if slow to build
 
 ---
 
 ## Hard Constraints
 
-- No payments, checkout, or transaction handling — ever in Phase 1
-- Buyers MUST be able to browse without creating an account
-- Every creator page and product page must be Google-indexable (SSR, not CSR)
-- Creator stats are self-reported — no Instagram API dependency
-- India-first: INR prices, Indian creator context, `.in` domain preferred
+- No payments, checkout, or transactions — ever in Phase 1
+- Buyers browse without accounts — always
+- Every creator and product page is Google-indexable — no CSR
+- Redirect tracker on every "where to buy" click — non-negotiable for proving value
+- Creator-OWNED brands only — not affiliates, not resellers
 
 ---
 
-## Key Decisions Already Made
+## Comparable Platforms
 
-- **No payments/logistics** — pure discovery layer, removes all ops complexity
-- **SEO-first** — every page server-rendered and indexed, this is the organic growth engine
-- **No buyer accounts** — friction kills discovery, browse freely
-- **Self-reported stats** — avoids Instagram API complexity, verification badge handles trust
-- **Creator-OWNED brands only** — not affiliate links (LTK model), not resellers (Meesho model)
-
-## Comparable Platforms (for context)
-
-- **LTK (US):** Influencers share affiliate links to OTHER brands' products — NOT what we're doing
-- **ShopMy (US):** Similar to LTK — affiliate, not creator-owned brands
-- **Meesho (India):** Social commerce for resellers — NOT creator-owned brands
-- **Nykaa:** Beauty/fashion marketplace for established brands — our inspiration for UX, not model
-- **Gap we fill:** Creator-OWNED brand discovery, India, all categories — doesn't exist yet
+- **Beacons.ai:** Closest long-term model. They did it for digital creators. We do it for physical product creators in India.
+- **Product Hunt:** Our Phase 1 model — curators list, makers claim.
+- **LTK (US):** Affiliates to other brands' products. NOT what we are.
+- **Meesho:** Resellers. NOT what we are.
+- **Nykaa:** Established labels. Inspiration for UX, not business model.
 
 ---
 
 ## Project Files
 
-- `PRD.md` — Full product requirements
-- `ARCH.md` — Technical architecture and data model
-- `DESIGN.md` — UX flows, key screens, design system
-- `STATUS.md` — Development log, tasks, time tracking
+- `PRD.md` — Full product requirements (v0.2 — revised)
+- `ARCH.md` — PENDING PRD sign-off
+- `DESIGN.md` — PENDING PRD sign-off
+- `STATUS.md` — Development log, decisions, tasks
 - `README.md` — Public summary
 
 ---
@@ -118,7 +129,7 @@
 ## How to Continue This Project
 
 1. Read `STATUS.md` → Current Focus + Pending Tasks
-2. Check if brand name has been decided (blocks domain + any public work)
-3. Ask Avinash: "Continuing from [last task] — ready to proceed?"
-4. Work on next pending task
-5. On session end: update `STATUS.md` → Development Log + Time Tracker
+2. Check if PRD v0.2 has been signed off (blocks ARCH and DESIGN)
+3. Check if brand name has been decided (blocks domain + any public work)
+4. Ask Avinash: "Continuing from [last task] — ready to proceed?"
+5. On session end: update `STATUS.md` → log decisions, update tasks, add time

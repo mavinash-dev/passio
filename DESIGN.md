@@ -1,155 +1,262 @@
 # Design Document
 ## Passio — Creator Brand Discovery Platform
 
-**Version:** 0.1
-**Created:** 2026-05-16
+**Version:** 1.0
+**PRD Version:** 0.2 (signed off 2026-05-16)
+**Status:** Active
 
 ---
 
 ## 1. Design Principles
 
-1. **Discovery first** — Every page should make you want to explore more. Think Pinterest meets Nykaa, not a spreadsheet of products.
-2. **Creator as hero** — The creator's face, story, and passion come before the product. People buy from people.
-3. **Trust signals everywhere** — Follower counts, platform badges, verification ticks. Buyers need to know this is a real creator.
-4. **Zero friction for buyers** — Browse without logging in. Find → click → buy. Three steps maximum.
-5. **Premium but warm** — Not cold like Amazon. Not garish like a sale site. Warm, editorial, aspirational — like a magazine that you can shop from.
+**Editorial over marketplace.** Passio is a curated media brand, not a listing site. Every page should feel like it was made for that creator — not slotted into a template grid.
+
+**Buyers are on mobile.** The primary buyer experience is mobile-first, likely arriving from an Instagram link. Desktop is secondary.
+
+**One action per page.** Each page has exactly one thing it wants the visitor to do: click "Where to buy", click "Claim this brand", browse the next creator. No competing CTAs.
+
+**Proof over promise.** Show click numbers, real product photos, real creator faces. No stock imagery, no filler copy.
 
 ---
 
-## 2. User Flows
+## 2. Visual Language
 
-### Flow 1: Creator Onboarding
-```
-Landing → "List your brand free" CTA
-  → Sign up (Clerk)
-  → Brand setup form (name, niche, bio, social handles, follower count)
-  → Upload profile photo
-  → List first product (name, photo, description, price range, buy link)
-  → Preview their public page: passio.in/[handle]
-  → Share prompt: "Put this in your Instagram bio"
-  → Done — listed in < 10 minutes
-```
+**Tone:** Clean, modern, editorial. Inspired by how Nykaa and The Label Life present brands — not a startup SaaS product.
 
-### Flow 2: Buyer Discovery
-```
-Lands on Passio (from creator's bio / Google / word of mouth)
-  → Browses home feed by category
-  → Taps a creator card they like
-  → Views creator profile + all their products
-  → Taps a product → product detail page
-  → Clicks "Where to buy" → creator's actual store (new tab)
-  → Done — back to Passio to discover more
-```
+**Typography:**
+- Headings: A humanist sans (Inter or Plus Jakarta Sans) — feels premium without being cold
+- Body: Same family, regular weight — consistency over contrast
+- Price / data callouts: Monospace or tabular figures — numbers should align
 
-### Flow 3: Creator Page as Marketing Tool
-```
-Creator lists on Passio
-  → Gets passio.in/[handle]
-  → Puts it as their Instagram link in bio
-  → Posts a story: "Shop my brand →" with Passio link
-  → New followers land on their Passio page
-  → Discover all their products in one place
-  → Click through to buy
-  → Creator gets customers they never had before
-```
+**Colour:**
+- Base: Near-white background (`#FAFAF8`) — not pure white, slightly warm
+- Text: Near-black (`#1A1A1A`) — not pure black
+- Accent: One brand colour TBD after brand name decision — used sparingly (primary CTA only)
+- Category pills / tags: Muted, not loud — `#F0EDE8` background with dark text
+
+**Imagery:**
+- Creator photos: Square or portrait crop, high quality — Passio should present creators better than their own Instagram bio does
+- Product photos: White or neutral background preferred — consistent across the grid
+- No illustrations, no icons beyond minimal UI chrome
+
+**Spacing:** Generous. Breathing room signals curation. Dense grids signal marketplace.
 
 ---
 
-## 3. Key Screens
+## 3. Page Inventory
 
-### Screen: Home / Discovery Feed
-- **Purpose:** Main entry for buyers — browse and discover creator brands
-- **Layout:**
-  - Hero banner: "Shop from India's creators" with search bar
-  - Category pills: Skincare | Food | Fitness | Fashion | Lifestyle | Digital
-  - Curated section: "Trending this week" — creator cards
-  - Section: "New on Passio" — recently listed
-  - Section per category: top creators
-- **Creator card shows:** Profile pic, name, niche badge, follower count, 2-3 product thumbnails
-
-### Screen: Creator Profile Page (`/[handle]`)
-- **Purpose:** The creator's permanent brand home — what they share in their bio
-- **Layout:**
-  - Top: large profile photo + name + niche + platform badges + follower count + verification tick
-  - Bio: 2-3 line brand pitch
-  - Products grid: all products, 2-col mobile / 3-col desktop
-  - "Follow on Instagram" / "Follow on YouTube" buttons
-  - Share button (top right)
-- **Feel:** Editorial, like a brand's own page, not a product listing
-
-### Screen: Product Page (`/p/[product-slug]`)
-- **Purpose:** Individual product — where buyer decides to click through
-- **Layout:**
-  - Large product photo
-  - Product name, description, price range
-  - "Where to buy →" button (prominent, goes to creator's store)
-  - Creator card below: photo + name + follower count + "See all products"
-  - Share button
-- **Key:** "Where to buy" is the ONLY CTA. No cart, no checkout.
-
-### Screen: Creator Dashboard (`/dashboard`)
-- **Purpose:** Creator manages their listing
-- **Sections:**
-  - Profile completeness score + tips
-  - "Your page": preview link + copy button
-  - Products: add/edit/delete
-  - Basic stats: page views this week, click-throughs (Phase 2)
-  - "Share your page" prompts with pre-written Instagram caption
-
-### Screen: Creator Onboarding (`/setup`)
-- **Purpose:** Get creator listed fast (< 10 minutes)
-- **Steps:**
-  - Step 1: Brand basics (name, niche, bio)
-  - Step 2: Social handles + follower count
-  - Step 3: Profile photo upload
-  - Step 4: First product (name, photo, price, buy link)
-  - Step 5: Preview + share
-
----
-
-## 4. Design Decisions
-
-### Warm editorial feel, not marketplace grid
-- **Chose:** Magazine/editorial layout — big creator photos, editorial sections, curated feel
-- **Because:** Amazon and Flipkart feel transactional. Passio should feel like discovering something special. Creator = personality, not inventory.
-- **Trade-off:** Less products per screen, but higher engagement per creator
-
-### Creator photo > product photo on cards
-- **Chose:** Creator face is the hero on discovery cards
-- **Because:** Buyers trust the creator first, product second. "I want to buy from Komal Pandey" before "I want to buy this dress."
-- **Trade-off:** Less product detail at-a-glance, but higher click-through
-
-### No buyer accounts in Phase 1
-- **Chose:** Browsing is fully public, no login wall
-- **Because:** Every extra step loses buyers. Discovery should be frictionless.
-- **Trade-off:** No wishlist/saves feature until Phase 2
-
----
-
-## 5. Component Reference
-
-| Component | Used In | Notes |
+| Page | Route | Purpose |
 |---|---|---|
-| CreatorCard | Home feed, search results, category pages | Photo + name + niche + follower count + product thumbnails |
-| ProductCard | Creator profile, product grid | Photo + name + price range + "View" |
-| PlatformBadge | Creator profile, creator card | Instagram/YouTube/TikTok with follower count |
-| VerifiedBadge | Creator profile, creator card | Blue tick for verified creators |
-| BuyButton | Product page | Big, prominent, "Where to buy →" — only CTA that matters |
-| CategoryPill | Home feed | Horizontal scroll on mobile |
+| Home / Discovery Feed | `/` | Browse creator brands by category |
+| Creator Profile | `/[handle]` | Full brand page for one creator |
+| Product Page | `/[handle]/[product-slug]` | Individual product + "Where to buy" CTA |
+| Redirect (no UI) | `/go/[product-id]` | Logs click, redirects — no UI |
+| Admin — Creator List | `/admin` | Internal tool: list all creators |
+| Admin — Add/Edit Creator | `/admin/creators/[id]/edit` | Internal tool: edit a creator listing |
+| Admin — Add/Edit Product | `/admin/products/[id]/edit` | Internal tool: edit a product |
 
 ---
 
-## 6. Design Resources
+## 4. Home / Discovery Feed (`/`)
 
-- Figma: TBD (build directly in code for Phase 1)
-- Design system: Custom, editorial — inspired by Nykaa + Vogue India + Linear
-- Fonts: Inter (UI) + Playfair Display or similar serif (hero headlines — warmth + premium)
-- Colors:
-  - Background: `#FAFAFA` (warm white — not cold white like Amazon)
-  - Surface: `#FFFFFF`
-  - Border: `#E5E5E5`
-  - Text primary: `#111111`
-  - Text secondary: `#737373`
-  - Accent: `#E85D26` (warm orange — passion, energy, India-feel — NOT blue like every other startup)
-  - Verified: `#3B82F6` (blue tick)
-  - Positive: `#22C55E`
+**Layout: Mobile (primary)**
+
+```
+┌─────────────────────────┐
+│  passio          [icon] │  ← wordmark left, minimal nav
+├─────────────────────────┤
+│                         │
+│  "Featured this week"   │  ← section heading, editorial tone
+│                         │
+│  ┌───────────────────┐  │
+│  │  [creator photo]  │  │  ← large card, ~70vw height
+│  │                   │  │
+│  │  Brand Name       │  │
+│  │  Creator Name     │  │
+│  │  Skincare · 82K   │  │
+│  └───────────────────┘  │
+│                         │
+│  ← scroll →             │  ← horizontal scroll for featured
+│                         │
+├─────────────────────────┤
+│  Skincare  Food  Fit... │  ← category pills, horizontal scroll
+├─────────────────────────┤
+│                         │
+│  "New on Passio"        │
+│                         │
+│  ┌────┐  ┌────┐        │
+│  │    │  │    │        │  ← 2-col grid of creator cards
+│  │    │  │    │        │
+│  └────┘  └────┘        │
+│  Brand    Brand        │
+│  Name     Name         │
+│                         │
+└─────────────────────────┘
+```
+
+**Creator card (grid):**
+- Creator / brand photo (square, fills card)
+- Brand name (bold)
+- Creator name (muted, smaller)
+- Niche tag (e.g., "Skincare")
+- Follower count (e.g., "82K on Instagram")
+- 2–3 product thumbnails in a row at the bottom of the card (optional, adds richness)
+
+**Sections (manually curated by Passio):**
+1. "Featured this week" — 3–5 creators, horizontal scroll
+2. Category pills: Skincare | Food | Fitness | Fashion | Lifestyle — filters the grid below
+3. "New on Passio" — most recently listed, 2-col grid
+4. (Optional) Per-category spotlight: "Best in Skincare this week" — 1 featured creator per category
+
+**No search bar in Phase 1.** Search opens in Phase 2 once listing volume justifies it.
+
+---
+
+## 5. Creator Profile Page (`/[handle]`)
+
+**Layout: Mobile**
+
+```
+┌─────────────────────────┐
+│  ← back     [share]     │
+├─────────────────────────┤
+│                         │
+│  [creator photo — hero] │  ← full-width, portrait or square
+│                         │
+│  Brand Name             │  ← large, bold
+│  by Creator Name        │  ← muted, smaller
+│                         │
+│  Skincare               │  ← niche pill
+│                         │
+│  ─────────────────────  │
+│                         │
+│  Short bio here. One    │
+│  to three sentences.    │
+│                         │
+│  ─────────────────────  │
+│                         │
+│  📸 82K   ←  platform  │  ← platform badges
+│  badges, left-aligned   │
+│                         │
+│  ─────────────────────  │
+│                         │
+│  Products               │  ← section heading
+│                         │
+│  ┌────────┐ ┌────────┐  │
+│  │[photo] │ │[photo] │  │  ← 2-col product grid
+│  │        │ │        │  │
+│  │Product │ │Product │  │
+│  │Name    │ │Name    │  │
+│  │₹599    │ │₹1,299  │  │
+│  └────────┘ └────────┘  │
+│                         │
+└─────────────────────────┘
+```
+
+**Details:**
+- Share button: copies `passio.in/[handle]` to clipboard + native share sheet on mobile
+- Platform badges: Instagram (primary), YouTube (if applicable) — follower count populated from public data initially; creator updates after claiming
+- Product grid taps through to product pages
+
+---
+
+## 6. Product Page (`/[handle]/[product-slug]`)
+
+**Layout: Mobile**
+
+```
+┌─────────────────────────┐
+│  ← Brand Name           │  ← back link to creator profile
+├─────────────────────────┤
+│                         │
+│  [product photo]        │  ← full-width, square or portrait
+│                         │
+├─────────────────────────┤
+│                         │
+│  Product Name           │  ← large, bold
+│  ₹599 – ₹1,299          │  ← price range, muted
+│                         │
+│  ─────────────────────  │
+│                         │
+│  Product description.   │
+│  2–4 sentences about    │
+│  what it is and for     │
+│  whom.                  │
+│                         │
+│  ─────────────────────  │
+│                         │
+│  ┌─────────────────────┐│
+│  │  Where to buy  →   ││  ← PRIMARY CTA — full width, accent colour
+│  └─────────────────────┘│
+│                         │
+│  ─────────────────────  │
+│                         │
+│  By Brand Name          │  ← creator card — compact
+│  Creator Name · Skincare│
+│  82K on Instagram       │
+│  [View all products →]  │
+│                         │
+│  ─────────────────────  │
+│                         │
+│  [share]                │
+│                         │
+└─────────────────────────┘
+```
+
+**Details:**
+- "Where to buy →" is the only CTA above the creator card. One action per page.
+- This button routes to `/go/[product-id]` — the redirect tracker — before reaching the creator's store.
+- Creator card at the bottom: compact version of their profile info, link back to `/[handle]`. Encourages buyers to explore the full brand after seeing one product.
+- Share button: native share sheet, pre-filled with product page URL — optimised for Instagram stories (vertical crop of product photo + page URL).
+
+---
+
+## 7. Admin Tool (Internal — No Design Polish)
+
+Functional only. Passio team uses this to list creator brands. No buyer ever sees this.
+
+**Screens:**
+- Creator list table: handle, name, niche, claimed (yes/no), products count, total clicks
+- Add/edit creator form: all fields from the `creators` model
+- Add/edit product form: all fields from the `products` model
+- Quick click summary per creator: total redirects last 7d / 30d / all time
+
+**Stack:** Same Next.js app, Clerk role gate (`admin`). Tailwind for functional layout — no custom design work.
+
+---
+
+## 8. Shared Components
+
+| Component | Used on |
+|---|---|
+| `CreatorCard` | Home feed grid, search results (Phase 2) |
+| `ProductCard` | Creator profile product grid |
+| `PlatformBadge` | Creator profile (Instagram, YouTube badges) |
+| `CategoryPill` | Home feed filter, creator profile niche tag |
+| `ShareButton` | Creator profile, product page |
+| `ClickCounter` | Creator dashboard (Phase 2) |
+
+---
+
+## 9. Mobile-First Breakpoints
+
+| Breakpoint | Target |
+|---|---|
+| Default (< 640px) | Mobile — primary buyer experience |
+| `sm` (640px+) | Larger phones / small tablets |
+| `md` (768px+) | Tablet — 3-col product grid |
+| `lg` (1024px+) | Desktop — wider creator profile, side-by-side layouts |
+
+Desktop is not ignored — SEO means some buyers will land from Google on desktop. But all design decisions start mobile.
+
+---
+
+## 10. What Phase 1 Design Does Not Include
+
+- Claim flow UI — Phase 2 (requires auth)
+- Creator dashboard with analytics charts — Phase 2
+- Search UI and results page — Phase 2
+- Buyer account / saved brands UI — Phase 2
+- Passio-hosted storefront pages — Phase 3
+- Checkout or payment UI — Phase 4
+- Native app screens — Phase 4
