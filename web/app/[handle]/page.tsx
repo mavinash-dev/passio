@@ -62,107 +62,106 @@ export default async function CreatorPage({
   const products = (productsData ?? []) as Product[]
 
   return (
-    <main className="min-h-screen bg-[#FAFAF8]">
+    <main className="min-h-screen bg-[#0C0C0C]">
       {/* Nav */}
-      <nav className="sticky top-0 z-10 bg-[#FAFAF8] border-b border-[#E8E4DF] px-4 py-4">
-        <div className="max-w-lg mx-auto flex items-center justify-between">
-          <a href="/" className="text-sm text-[#6B6B6B]">← All brands</a>
-          <span className="text-sm font-semibold tracking-tight text-[#1A1A1A]">passio</span>
+      <nav className="sticky top-0 z-20 bg-[#0C0C0C]/90 backdrop-blur-md border-b border-[#2C2C2C] px-4 py-4">
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
+          <a href="/" className="text-sm text-[#787878] hover:text-[#F2EDE4] transition-colors">
+            ← Back
+          </a>
+          <span className="font-display text-lg font-bold italic text-[#F2EDE4]">passio</span>
         </div>
       </nav>
 
-      <div className="max-w-lg mx-auto pb-20">
-        {/* Hero photo — full width, generous height */}
-        <div className="relative w-full aspect-[4/5] bg-[#F0EDE8]">
-          {creator.photo_url ? (
-            <Image
-              src={creator.photo_url}
-              alt={creator.name}
-              fill
-              className="object-contain"
-              priority
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center">
-              <span className="font-display text-7xl font-bold text-[#D8D4CF] italic">
-                {creator.name[0]}
-              </span>
-            </div>
-          )}
+      <div className="max-w-6xl mx-auto px-4 pb-20">
+        {/* Desktop: two-column layout */}
+        <div className="lg:grid lg:grid-cols-[380px_1fr] lg:gap-12 lg:mt-10">
 
-          {/* Niche pill overlaid on photo */}
-          {creator.niche && (
-            <div className="absolute bottom-4 left-4">
-              <span className="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-[#1A1A1A] capitalize tracking-wide">
-                {creator.niche}
-              </span>
-            </div>
-          )}
-        </div>
+          {/* Left — photo (sticky on desktop) */}
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <div className="relative w-full aspect-[3/4] bg-[#161616] rounded-3xl overflow-hidden border border-[#2C2C2C] mt-6 lg:mt-0">
+              {creator.photo_url ? (
+                <Image
+                  src={creator.photo_url}
+                  alt={creator.name}
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <span className="font-display text-8xl font-bold text-[#2C2C2C] italic">
+                    {creator.name[0]}
+                  </span>
+                </div>
+              )}
 
-        {/* Brand identity */}
-        <div className="px-5 mt-6">
-          <h1 className="font-display text-4xl font-bold text-[#1A1A1A] leading-tight tracking-tight">
-            {creator.name}
-          </h1>
-
-          {creator.instagram_handle && (
-            <p className="mt-1 text-sm text-[#6B6B6B]">@{creator.instagram_handle}</p>
-          )}
-        </div>
-
-        {/* Divider */}
-        <div className="mx-5 mt-6 border-t border-[#E8E4DF]" />
-
-        {/* The Story */}
-        {creator.bio && (
-          <div className="px-5 mt-6">
-            <p className="text-xs font-medium text-[#B0ADA8] uppercase tracking-[0.15em] mb-3">
-              The Story
-            </p>
-            <p className="font-display text-lg text-[#1A1A1A] leading-relaxed italic">
-              &ldquo;{creator.bio}&rdquo;
-            </p>
-          </div>
-        )}
-
-        {/* Instagram badge */}
-        {creator.instagram_handle && creator.instagram_followers != null && (
-          <div className="px-5 mt-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#F0EDE8] rounded-full">
-              <span className="text-sm">📸</span>
-              <span className="text-sm font-medium text-[#1A1A1A]">
-                {formatFollowers(creator.instagram_followers)} followers on Instagram
-              </span>
+              {creator.niche && (
+                <div className="absolute top-4 left-4">
+                  <span className="px-3 py-1 bg-[#0C0C0C]/80 backdrop-blur-sm rounded-full text-xs font-medium text-[#C9A96E] capitalize tracking-wide border border-[#2C2C2C]">
+                    {creator.niche}
+                  </span>
+                </div>
+              )}
             </div>
           </div>
-        )}
 
-        {/* Divider */}
-        <div className="mx-5 mt-8 border-t border-[#E8E4DF]" />
+          {/* Right — details */}
+          <div className="mt-6 lg:mt-0 lg:pt-0">
+            <h1 className="font-display text-4xl md:text-5xl font-bold text-[#F2EDE4] leading-tight">
+              {creator.name}
+            </h1>
 
-        {/* The Collection */}
-        {products.length > 0 && (
-          <div className="px-5 mt-8">
-            <p className="text-xs font-medium text-[#B0ADA8] uppercase tracking-[0.15em] mb-1">
-              The Collection
-            </p>
-            <h2 className="font-display text-2xl font-bold text-[#1A1A1A] mb-6">
-              {products.length} {products.length === 1 ? 'piece' : 'pieces'}
-            </h2>
-            <div className="grid grid-cols-2 gap-4">
-              {products.map((product) => (
-                <ProductCard key={product.id} product={product} handle={creator.handle} />
-              ))}
+            {creator.instagram_handle && (
+              <p className="mt-2 text-sm text-[#787878]">@{creator.instagram_handle}</p>
+            )}
+
+            <div className="mt-6 pt-6 border-t border-[#2C2C2C]">
+              <p className="text-xs font-medium text-[#444] uppercase tracking-[0.2em] mb-3">
+                The Story
+              </p>
+              {creator.bio ? (
+                <p className="font-display text-lg text-[#F2EDE4] leading-relaxed italic">
+                  &ldquo;{creator.bio}&rdquo;
+                </p>
+              ) : (
+                <p className="text-sm text-[#787878]">No bio yet.</p>
+              )}
+            </div>
+
+            {creator.instagram_handle && creator.instagram_followers != null && (
+              <div className="mt-6">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#1E1E1E] rounded-full border border-[#2C2C2C]">
+                  <span className="text-sm">📸</span>
+                  <span className="text-sm text-[#F2EDE4] font-medium">
+                    {formatFollowers(creator.instagram_followers)}
+                    <span className="text-[#787878] font-normal"> followers</span>
+                  </span>
+                </div>
+              </div>
+            )}
+
+            {/* Products */}
+            {products.length > 0 && (
+              <div className="mt-8 pt-8 border-t border-[#2C2C2C]">
+                <div className="flex items-baseline gap-3 mb-5">
+                  <p className="text-xs font-medium text-[#444] uppercase tracking-[0.2em]">
+                    The Collection
+                  </p>
+                  <span className="text-xs text-[#444]">{products.length} pieces</span>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {products.map((product) => (
+                    <ProductCard key={product.id} product={product} handle={creator.handle} />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="mt-10 pt-6 border-t border-[#2C2C2C]">
+              <p className="text-xs text-[#444]">Listed on Passio · Creator-owned, India-made</p>
             </div>
           </div>
-        )}
-
-        {/* Footer note */}
-        <div className="px-5 mt-12 text-center">
-          <p className="text-xs text-[#B0ADA8]">
-            Listed on Passio · Creator-owned, India-made
-          </p>
         </div>
       </div>
     </main>

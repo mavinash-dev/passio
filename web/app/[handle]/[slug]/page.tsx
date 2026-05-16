@@ -68,108 +68,131 @@ export default async function ProductPage({
   const product = productData as Product
 
   return (
-    <main className="min-h-screen bg-[#FAFAF8]">
-      <nav className="sticky top-0 z-10 bg-[#FAFAF8] border-b border-[#E8E4DF] px-4 py-4">
-        <div className="max-w-lg mx-auto">
-          <a href={`/${creator.handle}`} className="text-sm text-[#6B6B6B]">
+    <main className="min-h-screen bg-[#0C0C0C]">
+      {/* Nav */}
+      <nav className="sticky top-0 z-20 bg-[#0C0C0C]/90 backdrop-blur-md border-b border-[#2C2C2C] px-4 py-4">
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
+          <a
+            href={`/${creator.handle}`}
+            className="text-sm text-[#787878] hover:text-[#F2EDE4] transition-colors"
+          >
             ← {creator.name}
           </a>
+          <span className="font-display text-lg font-bold italic text-[#F2EDE4]">passio</span>
         </div>
       </nav>
 
-      <div className="max-w-lg mx-auto pb-16">
-        {/* Product photo */}
-        <div className="relative w-full aspect-square bg-[#F0EDE8]">
-          {product.photo_url ? (
-            <Image src={product.photo_url} alt={product.name} fill className="object-contain" priority />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center">
-              <span className="text-6xl">👗</span>
+      <div className="max-w-6xl mx-auto px-4 pb-20">
+        {/* Desktop: two-column */}
+        <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:mt-10 lg:items-start">
+
+          {/* Photo */}
+          <div className="mt-6 lg:mt-0 lg:sticky lg:top-24">
+            <div className="relative w-full aspect-[3/4] bg-[#161616] rounded-3xl overflow-hidden border border-[#2C2C2C]">
+              {product.photo_url ? (
+                <Image
+                  src={product.photo_url}
+                  alt={product.name}
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <span className="text-7xl opacity-10">◻</span>
+                </div>
+              )}
             </div>
-          )}
-        </div>
+          </div>
 
-        <div className="px-5 mt-6">
-          {/* Product name — serif, editorial */}
-          <h1 className="font-display text-3xl font-bold text-[#1A1A1A] leading-tight">
-            {product.name}
-          </h1>
+          {/* Details */}
+          <div className="mt-6 lg:mt-0 lg:py-2">
+            <h1 className="font-display text-3xl md:text-4xl font-bold text-[#F2EDE4] leading-tight">
+              {product.name}
+            </h1>
 
-          {product.price_range && (
-            <p className="mt-2 text-xl font-semibold text-[#1A1A1A]">{product.price_range}</p>
-          )}
+            {product.price_range && (
+              <p className="mt-3 text-3xl font-bold text-[#C9A96E]">{product.price_range}</p>
+            )}
 
-          {/* Description — editorial tone */}
-          {product.description && (
-            <div className="mt-5">
-              <p className="text-xs font-medium text-[#B0ADA8] uppercase tracking-[0.15em] mb-2">
-                About this piece
-              </p>
-              <p className="text-sm text-[#1A1A1A] leading-relaxed">{product.description}</p>
-            </div>
-          )}
+            {product.description && (
+              <div className="mt-6 pt-6 border-t border-[#2C2C2C]">
+                <p className="text-xs font-medium text-[#444] uppercase tracking-[0.2em] mb-3">
+                  About this piece
+                </p>
+                <p className="text-[#F2EDE4] text-sm leading-relaxed">{product.description}</p>
+              </div>
+            )}
 
-          {/* CTA — only shown when a buy link exists */}
-          {product.buy_link ? (
+            {/* CTA */}
             <div className="mt-8">
-              <a
-                href={`/go/${product.id}`}
-                className="block w-full py-4 bg-[#1A1A1A] text-white text-center font-semibold rounded-xl hover:bg-[#333] transition-colors tracking-wide"
-              >
-                Where to buy →
-              </a>
-              <p className="text-center text-xs text-[#B0ADA8] mt-2">
-                You&apos;ll be taken to {creator.name}&apos;s store
-              </p>
-            </div>
-          ) : (
-            <div className="mt-8 px-4 py-4 bg-[#F0EDE8] rounded-xl text-center">
-              <p className="text-sm text-[#6B6B6B]">
-                Reach out to{' '}
-                {creator.instagram_handle ? (
+              {product.buy_link ? (
+                <>
                   <a
-                    href={`https://instagram.com/${creator.instagram_handle}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-[#1A1A1A] underline"
+                    href={`/go/${product.id}`}
+                    className="block w-full py-4 bg-[#C9A96E] text-[#0C0C0C] text-center font-bold rounded-2xl hover:bg-[#d4b87a] transition-colors tracking-wide"
                   >
-                    @{creator.instagram_handle}
+                    Where to buy →
                   </a>
-                ) : (
-                  <span className="font-medium text-[#1A1A1A]">{creator.name}</span>
-                )}{' '}
-                on Instagram to order.
-              </p>
+                  <p className="text-center text-xs text-[#444] mt-2">
+                    You&apos;ll be taken to {creator.name}&apos;s store
+                  </p>
+                </>
+              ) : (
+                <div className="w-full py-4 bg-[#1E1E1E] rounded-2xl border border-[#2C2C2C] text-center">
+                  <p className="text-sm text-[#787878]">
+                    Order via{' '}
+                    {creator.instagram_handle ? (
+                      <a
+                        href={`https://instagram.com/${creator.instagram_handle}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#C9A96E] hover:underline font-medium"
+                      >
+                        @{creator.instagram_handle}
+                      </a>
+                    ) : (
+                      <span className="text-[#F2EDE4]">{creator.name}</span>
+                    )}{' '}
+                    on Instagram
+                  </p>
+                </div>
+              )}
             </div>
-          )}
 
-          {/* Creator card */}
-          <div className="mt-10 pt-6 border-t border-[#E8E4DF]">
-            <p className="text-xs font-medium text-[#B0ADA8] uppercase tracking-[0.15em] mb-4">
-              The brand
-            </p>
-            <Link href={`/${creator.handle}`} className="flex items-center gap-4 group">
-              <div className="relative w-14 h-14 bg-[#F0EDE8] rounded-full overflow-hidden flex-shrink-0">
-                {creator.photo_url ? (
-                  <Image src={creator.photo_url} alt={creator.name} fill className="object-contain" />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <span className="font-display font-bold text-[#B0ADA8]">{creator.name[0]}</span>
-                  </div>
-                )}
-              </div>
-              <div>
-                <p className="font-display font-bold text-[#1A1A1A] text-lg leading-tight">
-                  {creator.name}
-                </p>
-                {creator.niche && (
-                  <p className="text-xs text-[#6B6B6B] capitalize mt-0.5">{creator.niche}</p>
-                )}
-                <p className="text-xs text-[#6B6B6B] mt-1 group-hover:underline">
-                  View the full collection →
-                </p>
-              </div>
-            </Link>
+            {/* Creator card */}
+            <div className="mt-8 pt-8 border-t border-[#2C2C2C]">
+              <p className="text-xs font-medium text-[#444] uppercase tracking-[0.2em] mb-4">
+                The brand
+              </p>
+              <Link href={`/${creator.handle}`} className="flex items-center gap-4 group">
+                <div className="relative w-14 h-14 bg-[#1E1E1E] rounded-2xl overflow-hidden flex-shrink-0 border border-[#2C2C2C]">
+                  {creator.photo_url ? (
+                    <Image
+                      src={creator.photo_url}
+                      alt={creator.name}
+                      fill
+                      className="object-contain"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <span className="font-display font-bold text-[#444]">{creator.name[0]}</span>
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <p className="font-display font-bold text-[#F2EDE4] text-lg leading-tight">
+                    {creator.name}
+                  </p>
+                  {creator.niche && (
+                    <p className="text-xs text-[#787878] capitalize mt-0.5">{creator.niche}</p>
+                  )}
+                  <p className="text-xs text-[#C9A96E] mt-1 group-hover:underline">
+                    View full collection →
+                  </p>
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
