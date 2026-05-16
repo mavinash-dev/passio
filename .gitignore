@@ -1,0 +1,5 @@
+# Large files
+*.pdf
+
+# OS
+.DS_Store
