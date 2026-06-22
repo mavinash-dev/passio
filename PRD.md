@@ -1,287 +1,343 @@
 # Product Requirements Document
 
+## Passio *(working name)*
 
-## Passio — Discover the Spirit Behind Every Brand
-
-**Dream. Purpose. Brand Stories.**
-
-**Version:** 0.2
+**Version:** 1.0
 **Author:** Avinash
-**Created:** 2026-05-16
-**Revised:** 2026-05-16
-**Status:** Defining → Ready to Build
+**Revised:** 2026-06-22
+**Status:** Active — Rebuilding
 
 ---
 
-## 1. Problem Statement
+## 1. What Passio Is
 
-Indian creators are building real physical products — skincare, food, fitness supplements, fashion labels. The products are real. The problem is structural:
+> **A platform where Indian creator-owned physical brands build their own storefront, and buyers discover them through a personalised feed.**
+
+Passio is the home for India's creator economy — physical product edition. Creators sign up, build their brand page (themes, photos, story, products), and get discovered by buyers who've told Passio what they care about. The feed is driven by interests and behaviour, not manual curation.
+
+**The long arc:** Discovery → Creator Storefront → Payments → Creator Brand OS.
+(Same destination as before. Different, better path to get there.)
+
+---
+
+## 2. Problem Statement
 
 **For creators:**
-Instagram's algorithm surfaces a creator's personality and content to new people — not their product. Even if the product has its own dedicated Instagram page, discovery is limited: most new followers engage with the creator, not the product page, and product pages rarely reach new audiences unless constantly promoted. A creator can go viral and gain 10K new followers who never find out they have a skincare brand.
-- There is no destination where a buyer with active purchase intent can search and find creator-owned brands. Discovery is passive and algorithm-driven, not intent-driven.
-- There is no professional home for their brand outside of Instagram highlights and a bio link to their Shopify or WhatsApp.
-- WhatsApp ordering is the dominant commerce model for creator brands — unscalable, untraceable, and chaotic.
+- Indian micro-creators (10K–500K followers) sell physical products (fashion, skincare, food, fitness) through Instagram Stories and WhatsApp.
+- Their reach is permanently capped at their existing followers. New buyers outside their audience can't discover them.
+- They have no professional brand home — no website, no analytics, no storefront infrastructure.
+- WhatsApp ordering is unscalable, untraceable, and chaotic.
 
 **For buyers:**
-- No single destination to discover creator-owned brands by category.
-- Trust exists (they follow creators) but finding the actual product is friction-heavy.
-- The current buying experience: DM the creator → hope they reply → receive a payment link → UPI → wait for shipping.
+- No single destination to discover creator-owned brands by category or interest.
+- Trust already exists (they follow these creators), but finding the actual product is friction-heavy.
+- Nykaa has established labels. Meesho has resellers. Nothing exists for creator-owned physical brands.
 
-**The market gap:**
+**The gap:** Creator-owned physical brand discovery, India, all categories — does not exist.
 
-| Platform | What it is | Why it isn't this |
+---
+
+## 3. The Three Users
+
+### User 1: Admin (Avinash)
+The platform operator. Has full visibility and control over everything.
+
+**What they do:**
+- Review and approve new creator sign-ups before they go live
+- Feature/unfeature creators on curated sections of the feed
+- Full CRUD override on any creator page or product
+- View platform-wide analytics: total clicks, active creators, top brands, top products
+- Manage platform configuration (categories, theme options, featured slots)
+
+**What they don't do:**
+- Manually build creator pages — creators do that themselves now
+- Manually seed listings — all inbound from Day 2 onwards
+
+---
+
+### User 2: Buyer (End User)
+18–35 Indian consumers open to discovering creator-owned brands.
+
+**What they do:**
+- Browse a personalised discovery feed (no account required to browse)
+- Optionally create an account to set interests and get a better feed
+- Filter by category, price range, niche
+- Click a product → land on the creator's Passio page → tap "Buy" → go directly to creator's store
+- Save brands they like (requires account)
+- Share brand/product pages
+
+**What they don't do:**
+- Check out on Passio (Phase 3+)
+- See any "claimed" or "unclaimed" state — that concept does not exist for them
+- See admin controls of any kind
+
+**Buyer account is optional.** Browsing works without an account. An account unlocks: personalised feed, saved brands, purchase history (Phase 3+).
+
+---
+
+### User 3: Creator / Influencer
+Indian creator who owns a physical product brand.
+
+Split into two modes based on whether they have their own website:
+
+#### Creator WITHOUT their own website
+- Passio **is** their brand website and storefront
+- They get `passio.in/theirhandle` — goes directly in their Instagram bio
+- Their products link to WhatsApp, payment links, or any URL they provide
+- Passio is their professional brand home
+
+#### Creator WITH their own website (e.g. bramarambaa.com)
+- Passio is a **discovery and traffic layer** on top of their existing presence
+- Their products on Passio link directly to their website (their checkout, their UX)
+- Passio drives new buyers to them from outside their existing audience
+- They still get full analytics: how many people Passio sent them
+
+**Both types get the same creator experience on Passio.**
+
+---
+
+## 4. Creator Experience (Core)
+
+### 4.1 Sign Up
+- Auth via: Instagram OAuth, Google (Gmail), or Phone number (OTP)
+- Powered by Supabase Auth
+- Sign-up requires: brand name, handle, category, short bio, at least one product photo
+- Account goes into **pending review** — not visible to buyers until admin approves
+
+### 4.2 Brand Page Builder
+Creators build their own page. No drag-and-drop (that's a 12-month build). Instead: **3 curated themes** they pick from, then fill in their content.
+
+**What they can set:**
+- Theme (3 options — see Section 5)
+- Hero photo (brand image, not their face necessarily)
+- Creator photo / author portrait
+- Brand story (rich text, limited formatting — bold, italic, line breaks only)
+- Category and niche tags
+- Instagram handle, YouTube, other socials
+- Products (see 4.3)
+
+**What Passio controls (not editable by creator):**
+- Layout and spacing within their chosen theme
+- Font choices (Passio brand fonts only)
+- Passio nav and footer (platform chrome)
+- Analytics section (Passio-generated, not editable)
+
+### 4.3 Product Management
+Creators add and manage their own products.
+
+Each product:
+- Name, short description
+- Price (or price range)
+- Product photo (up to 5 per product)
+- Buy link — optional (WhatsApp, Shopify, Instamojo, any URL)
+- If no buy link: shows "DM to order" with Instagram link
+
+No checkout on Passio in Phase 1 or 2. Direct to creator's own store.
+
+### 4.4 Creator Analytics Dashboard
+Visible to creator after login:
+- Total profile views (last 7 days, 30 days, all time)
+- Total product click-throughs (tracked via `/go/[id]` redirect)
+- Top performing products by clicks
+- Traffic sources (Passio feed, direct, external)
+- Follower count displayed to buyers — creator can update manually
+
+### 4.5 Creator Settings
+- Edit all profile fields
+- Change theme
+- Add/remove products
+- Connect/disconnect social accounts
+- Delete account (soft delete — admin notified)
+
+---
+
+## 5. Themes
+
+Three themes at launch. More added based on creator requests (this is a growth mechanic — creators ask for new designs, we ship them, they upgrade).
+
+| Theme | Feel | Best for |
 |---|---|---|
-| LTK (US) | Influencer affiliate links | Links to OTHER brands' products — not creator-owned |
-| Meesho | Social commerce | Resellers — not creator-owned brands |
-| Nykaa | Beauty/fashion marketplace | Established labels — not creator-owned brands |
-| Beacons.ai | Creator monetisation tools | Digital products — not physical creator-owned brands |
+| **Editorial** | Warm off-white (#FAFAF8), Playfair Display serif, full-width hero, story-first | Fashion, lifestyle, skincare |
+| **Minimal** | White, Inter sans-serif, grid-first, product-forward | Food, supplements, functional products |
+| **Bold** | Dark background, large type, high-contrast product photos | Streetwear, fitness, statement brands |
 
-Creator-owned physical brand discovery, India, all categories — does not exist.
-
----
-
-## 2. Vision
-
-> **"The discovery layer for India's creator economy — that grows into the operating system for creator-owned brands."**
-
-Passio starts as a curated discovery directory and expands into the platform where creator-owned brands are built, sold, and scaled. The long-term model is what Beacons.ai built for digital creators in the US — applied to physical-product creators in India, starting from the discovery side.
-
-The full arc: Discovery → Creator Storefront → Payments → Creator Brand OS.
+All themes are mobile-first, fully responsive.
 
 ---
 
-## 3. Target Users
+## 6. Discovery Feed (Buyer Experience)
 
-### Primary User A: Creator / Brand Owner
-- **Who:** Indian micro to mid-tier creators (10K–500K followers) who make and sell their own physical product
-- **Products:** Skincare, food & beverage, fitness supplements, fashion, lifestyle goods
-- **Current situation:** Selling via Instagram stories, WhatsApp, and a Shopify or Instamojo link in bio
-- **Core pain:** No intent-based discovery channel. Buyers who want to find and buy creator-owned products have nowhere to look.
-- **What they need from Passio:** A permanent, professional brand home that brings in customers beyond their existing audience
+### 6.1 Algorithm
 
-### Primary User B: Buyer / Discoverer
-- **Who:** 18–35 Indian consumers who follow creators and actively buy from them
-- **Context:** Already comfortable buying from people they follow. Open to discovering creator brands they haven't heard of.
-- **Core pain:** No single destination to browse and shop creator-owned brands by category. Discovery is entirely word-of-mouth.
-- **What they need from Passio:** One trustworthy place to find and explore creator-owned brands
+The feed is personalised based on:
+- **Declared interests** — buyer sets on sign-up or first visit (Fashion / Skincare / Food / Fitness / Lifestyle / All)
+- **Behaviour signals** — what they click, how long they view a page, what they save
+- **Recency** — newly joined creators get a boost for 2 weeks
+- **Engagement** — creators with high click-through rates rank higher
+- **Admin featured slots** — Avinash can pin 1–3 creators at the top of the feed at any time
 
-### Not Targeted
-- Big celebrity brands (Virat Kohli's One8, Deepika's brands) — they have distribution
-- Drop-shippers or resellers marketing as their own brand
-- Affiliate marketers — creator must own the product, not promote someone else's
-- Digital product creators (courses, presets) — Phase 4 consideration
-- International creators
+No interest set = show all categories, ranked by engagement + recency.
 
----
+### 6.2 Feed Layout
+- Featured banner (admin-curated, rotating)
+- Personalised grid below (infinite scroll)
+- Category filter pills: All / Fashion / Skincare / Food / Fitness / Lifestyle
+- Creator cards: brand photo, brand name, one-line tagline, top product thumbnails
 
-## 4. Phase 1 MVP — Strict Scope
+### 6.3 Creator Page (Public)
+Rendered in creator's chosen theme. Contains:
+- Hero image
+- Brand name + creator name
+- Brand story
+- Product grid (tap → direct buy, no intermediate product page)
+- Social links
 
-### Model: Curated Listings with Creator Claim
-
-Passio manually researches and builds listings for creator brands. Creators do not sign up first — they discover their listing exists, see real traffic data, and claim ownership. This is the Product Hunt model: curation drives supply, proof of value drives creator engagement.
-
-### 4.1 Creator Profile Page (`/[handle]`)
-
-Public, SEO-indexed page for each creator brand. Built by Passio before the creator ever signs up.
-
-- Brand name, creator photo, niche, short bio
-- Platform badges with follower count (populated from public data; updated by creator after claiming)
-- Full product grid
-- Share button
-- "Claim this brand" prompt for unclaimed listings
-
-### 4.2 Product Pages (`/[handle]/[product-slug]`)
-
-Individual product pages. One purpose: get the buyer to the creator's store.
-
-- Product photo, name, description, price range
-- Single CTA: "Where to buy →" — routed through the redirect tracker before reaching the creator's store
-- Creator card embedded, linking back to their profile
-- Full SEO markup (schema.org Product)
-- Share button optimised for Instagram stories
-
-### 4.3 Redirect Tracker (`/go/[product-id]`)
-
-Every "Where to buy" click is logged before redirecting the buyer to the creator's actual store link (Shopify, Instamojo, WhatsApp).
-
-Logs: timestamp, referrer, product ID, creator ID.
-
-This is the proof-of-value mechanism. When a creator finds their listing, they see real click data — "Passio sent 47 people to your store this month." That is what converts a passive listing into an engaged creator.
-
-### 4.4 Claim Your Listing Flow
-
-How an unclaimed listing becomes a fully managed creator profile:
-
-1. Creator finds their Passio listing (via Google, Passio's Instagram feature, or a direct email from us)
-2. Clicks "Claim this brand"
-3. Verifies ownership via Instagram handle (oEmbed public API — no OAuth required)
-4. After claiming: can edit all profile fields, add or update products, view click data
-
-Claiming is the onboarding. There is no cold sign-up form.
-
-### 4.5 Discovery Feed (Home Page)
-
-Editorially curated home page. Passio selects what appears here manually in Phase 1 — no algorithm, no ranking engine.
-
-- Sections: "Featured this week", per category, "New on Passio"
-- Category navigation: Skincare | Food | Fitness | Fashion | Lifestyle
-- Creator cards showing brand photo, name, niche, and product thumbnails
+No "claimed/unclaimed" state. No Passio admin chrome visible. Just the brand's page.
 
 ---
 
-## 5. What Phase 1 Does Not Include
+## 7. Redirect Tracker
 
-- Self-serve creator sign-up and listing — opens in Phase 2 after the claim model is proven
-- Creator analytics dashboard — basic click data shown post-claim; full dashboard in Phase 2
-- Discovery algorithm or ranking engine — manual curation only in Phase 1
-- Search — Phase 2, once listing volume justifies it
-- Buyer accounts, wishlists, saved brands — Phase 2
+Every product "Buy" click goes through `/go/[product-id]` before reaching the creator's store.
+
+Logs: timestamp, product ID, creator ID, referrer, hashed IP (DPDP Act compliance).
+
+This data populates creator analytics. It is the core value proof — "Passio sent 847 people to your products last month."
+
+307 redirect (not 301) to prevent browser caching clicks.
+
+---
+
+## 8. Auth
+
+Powered by Supabase Auth.
+
+| User type | Auth required? | Methods |
+|---|---|---|
+| Buyer (browsing) | No | — |
+| Buyer (personalised feed, saved brands) | Yes | Google, Phone OTP |
+| Creator | Yes | Instagram OAuth, Google, Phone OTP |
+| Admin | Yes | Email + password (single account, Avinash only) |
+
+Roles stored in `user_roles` table. Supabase RLS enforces access at DB level.
+
+---
+
+## 9. What's Not In Phase 1
+
+- Payments / checkout — Phase 3
+- Search — add when there are 50+ creators
 - Reviews and ratings — Phase 3
-- Payments, checkout, cart — Phase 3
+- Creator-to-creator collaboration tools — Phase 4
 - Mobile app — Phase 4
-- Digital products — Phase 4
-- Brand or advertiser tools — Phase 4
+- Drag-and-drop page builder — Phase 4 (if themes prove insufficient)
+- Multi-admin / team accounts — Phase 3
+- Brand deals / sponsorship marketplace — Phase 5
 
 ---
 
-## 6. User Journeys
+## 10. User Journeys
 
-### Buyer Journey — Phase 1
+### Buyer (no account)
 ```
-Buyer sees Passio's Instagram feature a creator brand
+Lands on Passio home
       ↓
-Clicks link → lands on Passio home or creator's profile page
+Selects interest category (or skips — sees all)
       ↓
-Browses by category, discovers creator brands
+Browses personalised feed
       ↓
-Views product page
+Clicks creator card → creator's brand page (in their theme)
       ↓
-Clicks "Where to buy" → Passio logs click → buyer reaches creator's store
+Taps product → /go/[id] logs click → creator's store
       ↓
 Buys directly from creator
-      ↓
-Returns to Passio to discover more, or follows Passio's Instagram
 ```
 
-### Creator Journey — Phase 1 (Claim Model)
+### Buyer (with account)
 ```
-Passio lists the creator's brand using public information
+Returns to Passio
       ↓
-Creator discovers their listing via Google, Passio's Instagram, or direct outreach
+Feed is personalised based on past behaviour
       ↓
-Sees click data: "Passio sent X people to your store this month"
+Saved brands section shows their favourites
       ↓
-Claims their listing — verifies via Instagram handle
-      ↓
-Edits profile, adds products, updates buy links
-      ↓
-Receives ongoing traffic from Passio's curation and growing SEO
+Same buy flow as above
 ```
 
-### Creator Journey — Phase 2 (Self-Serve)
+### Creator (without own website)
 ```
-Creator hears about Passio from another creator or sees Passio's Instagram
+Hears about Passio (Instagram, word of mouth, DM from Avinash)
       ↓
-Sees social proof: "Creator brands on Passio averaged X clicks/month"
+Signs up → Instagram / Google / Phone
       ↓
-Signs up → creates profile → lists products
+Picks theme → fills in bio, story, photos
       ↓
-Passio verifies brand ownership before listing goes live
+Adds products with WhatsApp buy links
       ↓
-Listed in discovery feed
+Submits for review → Admin approves → goes live
+      ↓
+Puts passio.in/theirhandle in Instagram bio
+      ↓
+Sees analytics: views, clicks, top products
+```
+
+### Creator (with own website)
+```
+Same sign-up flow
+      ↓
+Products link to their website's product pages
+      ↓
+Passio = discovery layer that drives new buyers to them
+      ↓
+Analytics shows how much traffic Passio sent
+```
+
+### Admin
+```
+Logs into /admin
+      ↓
+Reviews pending creator applications
+      ↓
+Approves or rejects (with reason)
+      ↓
+Features 1–3 creators on home feed
+      ↓
+Monitors platform analytics
+      ↓
+Can edit any creator page or product if needed
 ```
 
 ---
 
-## 7. Growth Model
+## 11. Data Model (High Level)
 
-| Channel | Timeline | Mechanism |
-|---|---|---|
-| Passio's Instagram | Day 1 | Daily creator brand feature, editorial-style. Link drives traffic to their Passio page. |
-| Creator word-of-mouth | Month 2–3 | Creator sees click data → tells other creators → demand to be listed |
-| SEO | Month 6–12 | Creator profile and product pages indexed. Long-tail searches for creator brand names and niches. |
-| Self-serve listing | Month 3–6 | Opened after claim model is proven, with social proof ready for new creators |
-
-**Passio's Instagram is the Day 1 traffic engine.** One creator brand featured per day. Passio's bio link routes to the featured creator's page or the home feed. This is the mechanism that drives the first buyers and triggers the first creator claims.
-
-This model does not depend on:
-- Creators putting Passio in their own bio
-- Viral moments
-- Instagram's algorithm favouring Passio's posts (assume 5% organic reach as baseline)
+```
+users              — Supabase Auth managed
+user_roles         — admin | creator | buyer
+creator_profiles   — linked to user, holds all brand page data
+products           — linked to creator_profile
+redirect_logs      — every /go/[id] click
+saved_brands       — buyer user_id → creator_profile_id
+feed_features      — admin-pinned slots on home feed
+```
 
 ---
 
-## 8. Success Metrics
+## 12. Success Metrics
 
-| Metric | Month 1 | Month 3 | Month 6 | Month 12 |
-|---|---|---|---|---|
-| Creator brands listed (manually curated) | 50 | 150 | — | — |
-| Creators who claimed their listing | 10 | 60 | — | — |
-| Self-serve listings (Phase 2) | — | — | 500 | 2,000 |
-| Monthly click-throughs tracked | 500 | 5,000 | 25,000 | 150,000 |
-| Passio Instagram followers | 500 | 2,000 | 8,000 | 30,000 |
-
----
-
-## 9. Risks
-
-| Risk | Likelihood | Mitigation |
-|---|---|---|
-| Creators object to being listed without prior consent | Medium | Every listing shows a visible "Claim or remove this brand" option. Most will claim, not remove. |
-| Passio's Instagram organic reach stays low | High | Post consistently, tag featured creators (they reshare), engage creator communities |
-| Buy links break over time (WhatsApp, offline stores) | High | Monthly automated link-check. Prompt claimed creators to update stale links. |
-| Quality degrades when self-serve opens (fake or drop-shipped brands) | High | Manual verification gate before any self-serve listing goes live. Review queue for first 1,000. |
-| Meta builds intent-based creator brand discovery inside Instagram | Medium | Move fast. Creator relationships and curated trust are hard to replicate at platform scale. |
-
----
-
-## 10. Long-Term Roadmap
-
-| Phase | Timeline | Key Deliverable | Revenue Model |
+| Metric | Month 1 | Month 3 | Month 6 |
 |---|---|---|---|
-| Phase 1 | Month 0–3 | 150 creator brands listed, redirect tracking live, claim flow working | None — build trust and proof of value |
-| Phase 2 | Month 3–9 | Self-serve listing, full creator dashboard, click analytics, search | Promoted placements |
-| Phase 3 | Month 9–18 | Passio-hosted creator storefront — creator's store lives on Passio, not linked from it | Storefront subscription or revenue share |
-| Phase 4 | Month 18–30 | Payments — Passio processes UPI, COD, card transactions | Transaction percentage |
-| Phase 5 | Month 30+ | Creator brand OS — inventory, analytics, brand deals, collab tools | SaaS + transaction percentage |
-
-Phase 4 (payments) is the inflection point where Passio becomes a real business. Every architectural decision before that should make adding a payment layer easier, not harder.
+| Creators signed up | 10 | 75 | 300 |
+| Monthly click-throughs tracked | 500 | 10,000 | 75,000 |
+| Buyer accounts (optional) | 50 | 500 | 3,000 |
+| Creator retention (still active at 3mo) | — | 70% | — |
 
 ---
 
+## 13. Open Questions
 
-## 11. Execution Plan: 50 Brands, Instagram-First
-
-### Overview
-The initial go-to-market strategy is to curate and launch portfolios for 50 creator-owned brands, picking 5 brands every week. Each brand receives a premium, story-driven profile (inspired by "Humans of Bombay"), with a single, consistent design format. This is offered for free to creators, providing immediate value and social proof.
-
-### Steps
-1. **Brand Selection:** Manually research and shortlist 5 high-potential creator brands each week.
-2. **Outreach:** Contact creators using a concise, value-driven template (see `OUTREACH_TEMPLATE.md`).
-3. **Portfolio Creation:** Build a visually compelling profile for each brand using a single-format template (see `PROFILE_TEMPLATE.md`).
-4. **Instagram Promotion:** Feature each brand on Passio’s Instagram, using paid promotion to boost reach and engagement.
-5. **Inbound Interest:** Track and prioritize inbound requests from creators who want to be featured before the 50-brand milestone.
-6. **Execution Tracking:** Follow a week-by-week checklist to ensure consistency and momentum (see `EXECUTION_CHECKLIST.md`).
-
-### Why This Works
-- **Momentum:** Consistent output builds credibility and attracts both creators and buyers.
-- **Social Proof:** Early featured brands become advocates, driving organic growth.
-- **Quality Control:** Manual curation ensures only high-quality, authentic brands are listed.
-- **Instagram-First:** All growth and discovery efforts are focused on Instagram, with a budget for paid promotion to overcome organic reach limitations.
-
-### Supporting Files
-- `OUTREACH_TEMPLATE.md`: DM/email template for contacting creators
-- `PROFILE_TEMPLATE.md`: Standardized profile format for all brands
-- `EXECUTION_CHECKLIST.md`: Week-by-week execution and tracking checklist
-
----
-
-## 12. Open Questions
-
-- [ ] Final brand name — Raunaq? Crayvo? Flayr? Something else?
+- [ ] Final brand name — Raunaq, Crayvo, Flayr, or other? (Blocks domain + Instagram)
 - [ ] Domain — .in or .com?
-- [ ] How do we source and vet the first 50 creator brands to list manually?
-- [ ] Do we proactively DM or email creators when we list them, or wait for organic discovery?
-- [ ] What is the minimum viable listing before a creator claims — just a profile page, or at least one product?
-- [ ] What claim threshold triggers opening self-serve? (Proposed: 30+ organic claims)
+- [ ] Do buyers need an account to set interests, or do we store interest preference in a cookie for anonymous users?
+- [ ] How many creator applications do we manually review before automating it?
+- [ ] What is the rejection criteria for a creator application? (Must own brand, must have physical product, must have some public presence)

@@ -6,15 +6,20 @@
 
 ## What This Project Is
 
-**One-liner:** A curated discovery platform for Indian creator-owned physical brands — that grows into the operating system for creator brands in India.
+**One-liner:** A platform where Indian creator-owned physical brands build their own storefront, and buyers discover them through a personalised, interest-driven feed.
 
 **The real problem:** Indian creators sell physical products (skincare, food, fashion, fitness) but their reach is permanently capped at their existing followers. WhatsApp ordering and a bio link is their entire commerce infrastructure.
 
-**Phase 1 solution:** Passio manually curates and lists creator brands. We build their profile and product pages. We drive traffic through Passio's own Instagram. Creators discover their listing, see real click data, and claim it. No cold sign-up form.
+**How Passio works (current direction):**
+- Creators sign up (Instagram OAuth / Google / Phone via Supabase Auth), pick a theme, build their page, add products — they own their listing from Day 1
+- Buyers browse a personalised feed based on declared interests and behaviour signals
+- No "claimed/unclaimed" concept — creators actively join the platform
+- Creators WITHOUT a website: Passio IS their storefront (`passio.in/handle` goes in their bio)
+- Creators WITH a website: Passio is a discovery layer that drives new buyers to their site
 
 **Long-term trajectory (Beacons.ai model for India, physical products):**
-1. Discovery directory (now)
-2. Creator storefront — their store lives ON Passio
+1. Discovery platform with creator-owned pages (now)
+2. Creator storefront — Passio IS their website if they don't have one
 3. Payments — Passio processes the transaction (UPI, COD, card)
 4. Creator brand OS — analytics, inventory, brand deals
 
@@ -24,112 +29,109 @@
 
 ## What We Learned (Don't Repeat These Mistakes)
 
-- **Creators will NOT put Passio in their bio** — it sends their followers to competitor brands. Do not build assuming this.
-- **SEO is 12–18 months out** — not a launch strategy. Passio's own Instagram is the Day 1 traffic engine.
-- **Self-serve listing = cold start death** — empty marketplace, no traffic, no creator engagement. Curated model first.
-- **No redirect tracking = no proof of value** — creators need to see clicks before they engage. Tracker is Phase 1, not Phase 2.
+- **No "claimed/unclaimed" state** — this concept does not exist in the product. Buyers never see it. Creators don't "claim" — they sign up.
+- **No iframe embeds** — most sites block them (X-Frame-Options). Legally grey. Don't suggest this.
+- **No drag-and-drop builder** — that's a 12-month build. Use curated themes (3 options) instead.
+- **Creators will NOT put Passio in their bio unless Passio IS their website** — that's the play for creators without their own site.
+- **SEO is 12–18 months out** — not a launch strategy. Instagram is the Day 1 traffic engine.
+- **No redirect tracking = no proof of value** — every product click goes through `/go/[id]`. Non-negotiable.
+- **Scrap the old dark UI** — the first build had a dark (#0C0C0C) marketplace look. The new UI starts fresh. Three themes for creators; the platform chrome is clean and warm.
 
 ---
 
-## Target Users
+## Three Users
 
-- **Creators (supply):** Indian micro to mid-tier creators (10K–500K followers) who OWN a physical product brand. Not affiliates, not resellers.
-- **Buyers (demand):** 18–35 Indian consumers open to discovering and buying from creator-owned brands.
-- **Not targeting:** Celebrity brands, drop-shippers, resellers, digital-only creators, international creators.
+- **Admin (Avinash):** Approves creator applications, features brands on feed, full CRUD override, platform analytics
+- **Buyers:** 18–35 Indian consumers. Browse without account. Optional account for personalised feed + saved brands.
+- **Creators:** Indian micro to mid-tier (10K–500K followers) who OWN a physical product brand. Not affiliates, not resellers. Auth required to manage their page.
 
 ---
 
 ## Current Phase & Status
 
-**Phase:** Phase 1 — Build
-**Status:** Active
-**Last worked on:** 2026-05-16
+**Phase:** Rebuilding — PRD v1.0 signed off 2026-06-22
+**Status:** Active — scrapping old UI, starting fresh
 
-**What's done:**
-- [x] PRD v0.2 signed off
-- [x] ARCH.md written
-- [x] DESIGN.md written
+**What's been built (old, being scrapped):**
+- Next.js 15 app in `web/` subdirectory
+- Supabase schema + storage buckets
+- Old dark UI — home feed, creator pages, admin tool, redirect tracker
+- Deployed to https://passio-chi.vercel.app
 
 **What's next:**
-- [ ] Finalise brand name + domain
-- [ ] Scaffold Next.js project
-
----
-
-## Phase 1 MVP — Strict Scope
-
-1. **Creator profile page** (`/[handle]`) — Passio builds this, not the creator
-2. **Product pages** (`/[handle]/[product-slug]`) — individual, SEO indexed
-3. **Redirect tracker** (`/go/[product-id]`) — every "where to buy" click logged
-4. **Home / discovery feed** — manually curated, editorial, no algorithm
-5. **Internal listing tool** (`/admin`) — for Avinash to add/edit creator brands manually
-
-**NOT in Phase 1:**
-- Claim flow / creator login — Phase 2 (requires auth)
-- Self-serve creator sign-up — Phase 2
-- Creator analytics dashboard — Phase 2
-- Search — Phase 2
-- Buyer accounts — Phase 2
-- Payments or checkout of any kind — Phase 3+
-- Discovery algorithm or ranking engine — Phase 2+
-
----
-
-## Growth Model
-
-- **Day 1:** Passio's Instagram posts one creator brand feature per day → drives traffic to their Passio page
-- **Month 2–3:** Creator sees click data → claims listing → tells other creators → word of mouth
-- **Month 6+:** SEO begins contributing as domain authority grows
-- **Month 6–9:** Self-serve listing opens with social proof ("creators get X clicks/month on average")
+- [ ] Rewrite DB schema to support auth + creator-owned profiles + themes
+- [ ] Build new UI from scratch: home feed (algorithm), creator sign-up + page builder, admin panel, buyer experience
+- [ ] Brand name decision (blocks domain + Instagram)
 
 ---
 
 ## Tech Stack
 
-- **Frontend:** Next.js 15 (App Router) + Tailwind CSS
-- **Backend:** Next.js API routes
+- **Frontend:** Next.js 15 (App Router) + Tailwind CSS v4
+- **Backend:** Next.js API routes + Server Actions
 - **DB:** PostgreSQL via Supabase
-- **Auth:** None in Phase 1. Admin tool protected by `ADMIN_SECRET` env var.
-- **Hosting:** Local in Phase 1. Vercel when ready to go public.
+- **Auth:** Supabase Auth — Instagram OAuth, Google, Phone OTP (creators); Google/Phone (buyers)
+- **Hosting:** Vercel (passio-chi.vercel.app — auto-deploy on push to main)
 - **Images:** Supabase Storage
-- **Key principle:** SSR/ISR on all public pages — SEO must work, even if slow to build
+- **Key principle:** SSR/ISR on all public pages — SEO must work
+
+---
+
+## Themes (Creator Page Options)
+
+Three themes at launch. More added based on creator requests.
+
+| Theme | Feel | Best for |
+|---|---|---|
+| Editorial | Warm off-white (#FAFAF8), Playfair Display serif, story-first | Fashion, lifestyle, skincare |
+| Minimal | White, Inter sans-serif, product grid forward | Food, supplements, functional products |
+| Bold | Dark background, large type, high-contrast | Streetwear, fitness, statement brands |
 
 ---
 
 ## Hard Constraints
 
-- No payments, checkout, or transactions — ever in Phase 1
-- Buyers browse without accounts — always
-- Every creator and product page is Google-indexable — no CSR
-- Redirect tracker on every "where to buy" click — non-negotiable for proving value
+- No payments, checkout, or transactions — Phase 3+
+- Buyers can always browse without an account
+- Every creator and product page is Google-indexable — no CSR-only rendering
+- Redirect tracker on every product click — non-negotiable
 - Creator-OWNED brands only — not affiliates, not resellers
+- No "claimed/unclaimed" concept — ever
 
 ---
 
 ## Comparable Platforms
 
-- **Beacons.ai:** Closest long-term model. They did it for digital creators. We do it for physical product creators in India.
-- **Product Hunt:** Our Phase 1 model — curators list, makers claim.
-- **LTK (US):** Affiliates to other brands' products. NOT what we are.
+- **Beacons.ai:** Closest long-term model. Digital creators in the US. We do physical products in India.
+- **Linktree / Beacons:** Theme picker model — that's what our page builder is inspired by.
+- **LTK (US):** Affiliates. NOT what we are.
 - **Meesho:** Resellers. NOT what we are.
-- **Nykaa:** Established labels. Inspiration for UX, not business model.
+- **Nykaa:** Established labels. UX inspiration, not business model.
+
+---
+
+## Credentials (Never Commit These)
+
+- Supabase URL: `$NEXT_PUBLIC_SUPABASE_URL`
+- Anon key: `$NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- Service role: `$SUPABASE_SERVICE_ROLE_KEY`
+- Admin secret: `$ADMIN_SECRET`
+- Old JWT keys (eyJhbGci...) are REVOKED — never use them
+- `web/scripts/` is gitignored — keep it that way
 
 ---
 
 ## Project Files
 
-- `PRD.md` — Full product requirements (v0.2 — revised)
-- `ARCH.md` — PENDING PRD sign-off
-- `DESIGN.md` — PENDING PRD sign-off
+- `PRD.md` — Full product requirements (v1.0 — active)
 - `STATUS.md` — Development log, decisions, tasks
-- `README.md` — Public summary
+- `web/` — Next.js app (being rebuilt)
 
 ---
 
 ## How to Continue This Project
 
 1. Read `STATUS.md` → Current Focus + Pending Tasks
-2. Check if PRD v0.2 has been signed off (blocks ARCH and DESIGN)
-3. Check if brand name has been decided (blocks domain + any public work)
-4. Ask Avinash: "Continuing from [last task] — ready to proceed?"
-5. On session end: update `STATUS.md` → log decisions, update tasks, add time
+2. Check if brand name has been decided (blocks domain + Instagram)
+3. Resume from last task in STATUS.md
+4. On session end: update `STATUS.md` → log decisions, update tasks, add time
