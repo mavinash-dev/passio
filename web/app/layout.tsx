@@ -10,8 +10,8 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'Passio — Discover Creator Brands',
-  description: 'Discover and shop creator-owned brands from India.',
+  title: 'Passio',
+  description: 'A beautiful home for Indian fashion creators.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

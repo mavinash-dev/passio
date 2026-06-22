@@ -200,7 +200,7 @@ All buy buttons → `https://bramarambaa.com` (direct, no redirect tracking unti
 
 ---
 
-## Open Decisions (confirm before M1 build starts)
+## Decisions Made
 
-- [ ] **Nav on creator page** — wordmark only, or no nav at all?
-- [ ] **"Made with Passio" footer** — yes or no?
+- **Nav:** Passio wordmark only. No links.
+- **Footer:** "Made with Passio" — yes.
