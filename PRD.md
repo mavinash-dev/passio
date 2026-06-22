@@ -2,342 +2,348 @@
 
 ## Passio *(working name)*
 
-**Version:** 1.0
+**Version:** 2.0 — Final
 **Author:** Avinash
-**Revised:** 2026-06-22
-**Status:** Active — Rebuilding
+**Date:** 2026-06-22
+**Status:** Signed off — Ready to build
 
 ---
 
 ## 1. What Passio Is
 
-> **A platform where Indian creator-owned physical brands build their own storefront, and buyers discover them through a personalised feed.**
+> **The Linktree replacement for Indian fashion creators with a real brand.**
 
-Passio is the home for India's creator economy — physical product edition. Creators sign up, build their brand page (themes, photos, story, products), and get discovered by buyers who've told Passio what they care about. The feed is driven by interests and behaviour, not manual curation.
+Your followers tap your bio link and see a list. With Passio, they see your brand — full collection, your story, your aesthetic. And you see which products they actually tap.
 
-**The long arc:** Discovery → Creator Storefront → Payments → Creator Brand OS.
-(Same destination as before. Different, better path to get there.)
+Not Shopify — built to handle inventory, payments, shipping, and scale. Most creator fashion brands don't have those problems yet. They have one problem: no professional brand home. Passio solves that one problem without asking them to learn the other ten.
+Not Linktree — a list of links is not a brand. Passio is what goes in that bio slot when you're serious.
+Not Notion or Google Drive — embarrassing for a real brand.
 
----
+Passio is a direct Linktree replacement — not something that sits inside a Linktree. A creator who puts Passio in their bio gives their followers a full brand experience: product grid, brand story, click analytics, real aesthetic. In 20 minutes. Free.
 
-## 2. Problem Statement
+**What Passio is not right now:** A discovery platform, a marketplace, a search engine, or a place buyers come to browse. That is Phase 3. Pretending otherwise is a lie that will mislead every build decision.
 
-**For creators:**
-- Indian micro-creators (10K–500K followers) sell physical products (fashion, skincare, food, fitness) through Instagram Stories and WhatsApp.
-- Their reach is permanently capped at their existing followers. New buyers outside their audience can't discover them.
-- They have no professional brand home — no website, no analytics, no storefront infrastructure.
-- WhatsApp ordering is unscalable, untraceable, and chaotic.
-
-**For buyers:**
-- No single destination to discover creator-owned brands by category or interest.
-- Trust already exists (they follow these creators), but finding the actual product is friction-heavy.
-- Nykaa has established labels. Meesho has resellers. Nothing exists for creator-owned physical brands.
-
-**The gap:** Creator-owned physical brand discovery, India, all categories — does not exist.
+**The long arc:** Creator storefront → Cross-creator browsing → Full discovery engine → Payments → Creator brand OS.
 
 ---
 
-## 3. The Three Users
+## 2. The Problem
+
+### For fashion creators
+Indian fashion micro-creators (10K–500K followers) sell through Instagram Stories, WhatsApp, and payment links. Their current infrastructure:
+
+- Instagram profile (content + DMs)
+- WhatsApp number (orders)
+- Google Drive / Canva PDF (catalogue)
+- Razorpay / Instamojo link (payment)
+- Linktree or bare Shopify (bio link)
+
+The result: no professional brand home. No product grid. No brand story. No analytics showing what sells.
+
+Shopify is the right tool — once a brand is managing inventory, fulfilling at volume, running paid ads, and needs a full checkout. Most creator fashion brands aren't there yet. They need a branded catalogue and a way to capture buying intent, not an operations platform.
+
+**The gap:** A tool built specifically for Instagram-native fashion creators who need to look like a real brand without Shopify's complexity or overhead.
+
+### For buyers
+When a buyer sees a creator's fashion collection in Stories and wants to see the full range — there's nowhere to go. They DM, wait, get a catalogue PDF, maybe get a reply. The friction kills the impulse.
+
+A proper product page — browsable, shareable, always live — converts that impulse into a click.
+
+---
+
+## 3. Who Passio Is For
+
+**For:**
+- Fashion creators selling through Instagram (Stories, DMs, bio link)
+- Brands with 10K–500K followers who own or make what they sell
+- Creators currently using Linktree, WhatsApp catalogues, Google Drive PDFs, or Canva links
+- People who think Shopify is too much, too soon
+
+**Not for:**
+- Large D2C brands already on Shopify — they don't need this
+- Multi-category marketplaces or resellers
+- Brands managing real inventory at volume
+- Non-fashion categories — Phase 1 is fashion only, full stop
+
+Being clear about this at sign-up prevents onboarding the wrong creators and diluting the product.
+
+---
+
+## 4. The Three Users
 
 ### User 1: Admin (Avinash)
-The platform operator. Has full visibility and control over everything.
+- Reviews and approves creator sign-up applications
+- Can edit any creator page or product
+- Sees platform analytics: active creators, total clicks, top brands
+- Manages a simple "Browse all" page showing live creators
 
-**What they do:**
-- Review and approve new creator sign-ups before they go live
-- Feature/unfeature creators on curated sections of the feed
-- Full CRUD override on any creator page or product
-- View platform-wide analytics: total clicks, active creators, top brands, top products
-- Manage platform configuration (categories, theme options, featured slots)
+### User 2: Buyer
+Arrives from an external link — always.
 
-**What they don't do:**
-- Manually build creator pages — creators do that themselves now
-- Manually seed listings — all inbound from Day 2 onwards
+- Creator's Instagram bio: `passio.in/brandname`
+- Passio's own Instagram featuring a creator brand
+- Google search for a creator's brand name
 
----
+The buyer lands on a creator's brand page, browses the collection, taps a product, and goes to the creator's store. No Passio account needed. No checkout on Passio. Passio never touches the transaction.
 
-### User 2: Buyer (End User)
-18–35 Indian consumers open to discovering creator-owned brands.
+A "Browse all" page exists — but it is not the primary entry point. It's where curious buyers go after landing on one creator's page.
 
-**What they do:**
-- Browse a personalised discovery feed (no account required to browse)
-- Optionally create an account to set interests and get a better feed
-- Filter by category, price range, niche
-- Click a product → land on the creator's Passio page → tap "Buy" → go directly to creator's store
-- Save brands they like (requires account)
-- Share brand/product pages
+### User 3: Creator / Fashion Brand Owner
 
-**What they don't do:**
-- Check out on Passio (Phase 3+)
-- See any "claimed" or "unclaimed" state — that concept does not exist for them
-- See admin controls of any kind
+**Type A — No website:**
+Passio IS their website. `passio.in/handle` is their bio link. Products link to WhatsApp, Razorpay, Instamojo, or any URL. Passio replaces the Linktree + PDF catalogue combo with something that actually looks like a brand.
 
-**Buyer account is optional.** Browsing works without an account. An account unlocks: personalised feed, saved brands, purchase history (Phase 3+).
+**Type B — Has a website:**
+Passio is additional distribution. Their products link to their own site. They get a Passio page that drives buyers from outside their existing audience and shows them how much traffic Passio sent.
+
+Both types get the same product experience.
 
 ---
 
-### User 3: Creator / Influencer
-Indian creator who owns a physical product brand.
-
-Split into two modes based on whether they have their own website:
-
-#### Creator WITHOUT their own website
-- Passio **is** their brand website and storefront
-- They get `passio.in/theirhandle` — goes directly in their Instagram bio
-- Their products link to WhatsApp, payment links, or any URL they provide
-- Passio is their professional brand home
-
-#### Creator WITH their own website (e.g. bramarambaa.com)
-- Passio is a **discovery and traffic layer** on top of their existing presence
-- Their products on Passio link directly to their website (their checkout, their UX)
-- Passio drives new buyers to them from outside their existing audience
-- They still get full analytics: how many people Passio sent them
-
-**Both types get the same creator experience on Passio.**
-
----
-
-## 4. Creator Experience (Core)
+## 4. Creator Experience
 
 ### 4.1 Sign Up
-- Auth via: Instagram OAuth, Google (Gmail), or Phone number (OTP)
-- Powered by Supabase Auth
-- Sign-up requires: brand name, handle, category, short bio, at least one product photo
-- Account goes into **pending review** — not visible to buyers until admin approves
+- Google or Phone OTP (Supabase Auth)
+- Required at sign-up: brand name, handle, category tag, Instagram handle, one photo
+- Submitted for admin review — not public until approved
+
+**Approval criteria (must meet all three):**
+1. Sells fashion (not reselling — must own/make/curate the product)
+2. Has a real public presence (Instagram with posts, or existing website)
+3. India-based brand
+
+Rejection sends an email with reason. Creator can reapply.
 
 ### 4.2 Brand Page Builder
-Creators build their own page. No drag-and-drop (that's a 12-month build). Instead: **3 curated themes** they pick from, then fill in their content.
+Creator picks a theme and fills in their content. Three sections:
 
-**What they can set:**
-- Theme (3 options — see Section 5)
-- Hero photo (brand image, not their face necessarily)
-- Creator photo / author portrait
-- Brand story (rich text, limited formatting — bold, italic, line breaks only)
-- Category and niche tags
-- Instagram handle, YouTube, other socials
-- Products (see 4.3)
+**Brand identity**
+- Hero photo (the main visual — brand shoot, not necessarily the creator's face)
+- Creator portrait (optional — the "face behind the brand")
+- Brand name + tagline
+- Brand story (plain text, no rich editor — 3–5 sentences max encouraged)
+- Instagram handle, website URL
 
-**What Passio controls (not editable by creator):**
-- Layout and spacing within their chosen theme
-- Font choices (Passio brand fonts only)
-- Passio nav and footer (platform chrome)
-- Analytics section (Passio-generated, not editable)
+**Products**
+- Add up to 20 products at launch (limit raised as platform scales)
+- Per product: name, 1–3 photos, price (text field), optional buy link
+- No buy link = "DM to order" button linking to Instagram DMs
+- Drag to reorder
 
-### 4.3 Product Management
-Creators add and manage their own products.
+**Settings**
+- Change theme anytime
+- Toggle products active/inactive
+- Delete account
 
-Each product:
-- Name, short description
-- Price (or price range)
-- Product photo (up to 5 per product)
-- Buy link — optional (WhatsApp, Shopify, Instamojo, any URL)
-- If no buy link: shows "DM to order" with Instagram link
+### 4.3 Analytics Dashboard
+After login, creator sees:
 
-No checkout on Passio in Phase 1 or 2. Direct to creator's own store.
+- Total page views (7 days / 30 days / all time)
+- Total product click-throughs (per product)
+- Top 3 products by clicks
+- Traffic sources (Instagram, direct, Google, other)
 
-### 4.4 Creator Analytics Dashboard
-Visible to creator after login:
-- Total profile views (last 7 days, 30 days, all time)
-- Total product click-throughs (tracked via `/go/[id]` redirect)
-- Top performing products by clicks
-- Traffic sources (Passio feed, direct, external)
-- Follower count displayed to buyers — creator can update manually
-
-### 4.5 Creator Settings
-- Edit all profile fields
-- Change theme
-- Add/remove products
-- Connect/disconnect social accounts
-- Delete account (soft delete — admin notified)
+This is the retention hook. A creator who sees "847 people visited your page last month, 203 tapped the Blue Petal dress" has a reason to stay, update their products, and tell other creators.
 
 ---
 
 ## 5. Themes
 
-Three themes at launch. More added based on creator requests (this is a growth mechanic — creators ask for new designs, we ship them, they upgrade).
+Three themes at launch. Creator picks one. More themes added based on creator demand — this is a growth mechanic.
 
-| Theme | Feel | Best for |
+| Theme | Feel | Built for |
 |---|---|---|
-| **Editorial** | Warm off-white (#FAFAF8), Playfair Display serif, full-width hero, story-first | Fashion, lifestyle, skincare |
-| **Minimal** | White, Inter sans-serif, grid-first, product-forward | Food, supplements, functional products |
-| **Bold** | Dark background, large type, high-contrast product photos | Streetwear, fitness, statement brands |
+| **Editorial** | Warm off-white (#FAFAF8), Playfair Display serif, story leads, full-width hero | Ethnic wear, sarees, handloom, occasion wear |
+| **Minimal** | White, Inter sans-serif, product grid first, clean and modern | Co-ords, western fusion, contemporary Indian fashion |
+| **Bold** | Dark background, large type, high-contrast images | Streetwear, statement pieces, experimental fashion |
 
-All themes are mobile-first, fully responsive.
+All themes: mobile-first, fully responsive, server-side rendered (Google-indexable).
 
 ---
 
-## 6. Discovery Feed (Buyer Experience)
+## 6. The "Browse All" Page
 
-### 6.1 Algorithm
+A simple grid of all active creator brands on Passio. Fashion only — no categories needed yet.
 
-The feed is personalised based on:
-- **Declared interests** — buyer sets on sign-up or first visit (Fashion / Skincare / Food / Fitness / Lifestyle / All)
-- **Behaviour signals** — what they click, how long they view a page, what they save
-- **Recency** — newly joined creators get a boost for 2 weeks
-- **Engagement** — creators with high click-through rates rank higher
-- **Admin featured slots** — Avinash can pin 1–3 creators at the top of the feed at any time
+- Creator card: hero photo, brand name, one-line tagline, niche tag
+- Ordered by: newest first (no algorithm)
+- Admin can pin 1–3 creators to the top
 
-No interest set = show all categories, ranked by engagement + recency.
+This is not the product. This is a bonus. The product is the individual creator page.
 
-### 6.2 Feed Layout
-- Featured banner (admin-curated, rotating)
-- Personalised grid below (infinite scroll)
-- Category filter pills: All / Fashion / Skincare / Food / Fitness / Lifestyle
-- Creator cards: brand photo, brand name, one-line tagline, top product thumbnails
-
-### 6.3 Creator Page (Public)
-Rendered in creator's chosen theme. Contains:
-- Hero image
-- Brand name + creator name
-- Brand story
-- Product grid (tap → direct buy, no intermediate product page)
-- Social links
-
-No "claimed/unclaimed" state. No Passio admin chrome visible. Just the brand's page.
+When there are 50+ creators: add sub-category filters (Ethnic / Contemporary / Handloom / Streetwear).
+When there are 200+ creators and real buyer behaviour data: build the discovery engine.
 
 ---
 
 ## 7. Redirect Tracker
 
-Every product "Buy" click goes through `/go/[product-id]` before reaching the creator's store.
+Every "Buy" click → `/go/[product-id]` → logs click → 307 redirect to creator's store or Instagram DM.
 
-Logs: timestamp, product ID, creator ID, referrer, hashed IP (DPDP Act compliance).
+Logs: timestamp, product ID, creator ID, referrer, hashed IP (DPDP Act compliance), user agent.
 
-This data populates creator analytics. It is the core value proof — "Passio sent 847 people to your products last month."
+307 redirect (not 301) — prevents browser caching.
 
-307 redirect (not 301) to prevent browser caching clicks.
+Bot filtering: ignores common bot user agents before logging.
 
----
-
-## 8. Auth
-
-Powered by Supabase Auth.
-
-| User type | Auth required? | Methods |
-|---|---|---|
-| Buyer (browsing) | No | — |
-| Buyer (personalised feed, saved brands) | Yes | Google, Phone OTP |
-| Creator | Yes | Instagram OAuth, Google, Phone OTP |
-| Admin | Yes | Email + password (single account, Avinash only) |
-
-Roles stored in `user_roles` table. Supabase RLS enforces access at DB level.
+This data is the entire creator analytics system. It is non-negotiable from Day 1.
 
 ---
 
-## 9. What's Not In Phase 1
+## 8. What Is Not In Phase 1
 
-- Payments / checkout — Phase 3
-- Search — add when there are 50+ creators
-- Reviews and ratings — Phase 3
-- Creator-to-creator collaboration tools — Phase 4
-- Mobile app — Phase 4
-- Drag-and-drop page builder — Phase 4 (if themes prove insufficient)
-- Multi-admin / team accounts — Phase 3
-- Brand deals / sponsorship marketplace — Phase 5
+| Feature | When |
+|---|---|
+| Buyer accounts / saved brands | Phase 2 — when there are 50+ creators worth saving |
+| Search | Phase 2 — when there are 50+ creators |
+| Sub-category filters | Phase 2 — when there are 50+ creators |
+| Second fashion sub-category or new verticals | Phase 2 — after fashion has 50+ active creators |
+| Cross-creator recommendations ("you might also like") | Phase 3 |
+| Algorithm / personalised feed | Phase 3 — needs real buyer behaviour data |
+| Payments / checkout on Passio | Phase 3 |
+| More than 3 themes | On-demand — as creators request specific aesthetics |
+| Creator collaboration tools | Phase 4 |
+| Mobile app | Phase 4 |
+| Reviews or ratings | Phase 3 |
 
 ---
 
-## 10. User Journeys
+## 9. User Journeys
 
-### Buyer (no account)
+### Buyer
 ```
-Lands on Passio home
-      ↓
-Selects interest category (or skips — sees all)
-      ↓
-Browses personalised feed
-      ↓
-Clicks creator card → creator's brand page (in their theme)
-      ↓
-Taps product → /go/[id] logs click → creator's store
-      ↓
+Sees a fashion brand on Passio's Instagram (or creator's own Instagram)
+  ↓
+Taps bio link → lands on creator's Passio page
+  ↓
+Browses brand story + product grid
+  ↓
+Taps product → /go/[id] logs click → creator's store / WhatsApp DM
+  ↓
 Buys directly from creator
+  ↓
+(Optional) Explores "Browse all" page to find similar creators
 ```
 
-### Buyer (with account)
+### Creator (Type A — no website)
 ```
-Returns to Passio
-      ↓
-Feed is personalised based on past behaviour
-      ↓
-Saved brands section shows their favourites
-      ↓
-Same buy flow as above
-```
-
-### Creator (without own website)
-```
-Hears about Passio (Instagram, word of mouth, DM from Avinash)
-      ↓
-Signs up → Instagram / Google / Phone
-      ↓
-Picks theme → fills in bio, story, photos
-      ↓
-Adds products with WhatsApp buy links
-      ↓
-Submits for review → Admin approves → goes live
-      ↓
-Puts passio.in/theirhandle in Instagram bio
-      ↓
-Sees analytics: views, clicks, top products
+Hears about Passio from another creator or Passio's Instagram DM outreach
+  ↓
+Signs up → Google or Phone
+  ↓
+Picks theme → fills brand story + photos → adds products (20 min total)
+  ↓
+Admin approves → page goes live
+  ↓
+Replaces Linktree with passio.in/handle in Instagram bio
+  ↓
+Dashboard shows: page views, product clicks, top products
+  ↓
+Updates products each season / collection drop
 ```
 
-### Creator (with own website)
+### Creator (Type B — has website)
 ```
-Same sign-up flow
-      ↓
-Products link to their website's product pages
-      ↓
-Passio = discovery layer that drives new buyers to them
-      ↓
-Analytics shows how much traffic Passio sent
+Same sign-up and build flow
+  ↓
+Products link to their own website's product pages
+  ↓
+Passio replaces their Linktree in bio (or is added if they had no link tool)
+  ↓
+Dashboard shows how much traffic Passio sent them vs. other sources
 ```
 
 ### Admin
 ```
-Logs into /admin
-      ↓
-Reviews pending creator applications
-      ↓
-Approves or rejects (with reason)
-      ↓
-Features 1–3 creators on home feed
-      ↓
-Monitors platform analytics
-      ↓
-Can edit any creator page or product if needed
+New creator application arrives → email notification
+  ↓
+Reviews: brand name, Instagram, photos, product category
+  ↓
+Approves (page goes live) or rejects (email sent with reason)
+  ↓
+Pins 1–3 creators to top of Browse All page
+  ↓
+Monitors: total creators, total clicks, flagged content
+  ↓
+Edits any page or product if needed
 ```
 
 ---
 
-## 11. Data Model (High Level)
+## 10. Tech Stack
 
-```
-users              — Supabase Auth managed
-user_roles         — admin | creator | buyer
-creator_profiles   — linked to user, holds all brand page data
-products           — linked to creator_profile
-redirect_logs      — every /go/[id] click
-saved_brands       — buyer user_id → creator_profile_id
-feed_features      — admin-pinned slots on home feed
-```
+| Layer | Choice | Reason |
+|---|---|---|
+| Framework | Next.js 15 (App Router) | SSR for SEO, fast builds, Vercel native |
+| Styling | Tailwind CSS v4 | Utility-first, theme switching via CSS vars |
+| Database | PostgreSQL via Supabase | Auth + DB + Storage in one |
+| Auth | Supabase Auth | Google + Phone OTP out of the box |
+| Storage | Supabase Storage | Creator and product photos |
+| Hosting | Vercel | Auto-deploy on push, preview URLs |
+| Fonts | Playfair Display + Inter via next/font | Editorial + clean sans pairing |
 
 ---
 
-## 12. Success Metrics
+## 11. Success Metrics
+
+The metric that matters most in Month 1:
+
+> **How many creators replaced their Linktree with their Passio page.**
+
+That is the signal the product is good enough to trust with their audience. Everything else is secondary.
 
 | Metric | Month 1 | Month 3 | Month 6 |
 |---|---|---|---|
-| Creators signed up | 10 | 75 | 300 |
-| Monthly click-throughs tracked | 500 | 10,000 | 75,000 |
-| Buyer accounts (optional) | 50 | 500 | 3,000 |
-| Creator retention (still active at 3mo) | — | 70% | — |
+| Active creators (approved, live) | 10 | 40 | 100 |
+| Creators using Passio as bio link | 5 | 25 | 70 |
+| Monthly product click-throughs | 300 | 6,000 | 35,000 |
+| Creator monthly active (logged in + updated something) | 80% | 65% | 55% |
+| Passio Instagram followers | 300 | 2,000 | 8,000 |
+
+What we are NOT measuring yet: buyer accounts, repeat visits, time on site. We don't have the buyer volume to make those meaningful. Measure them in Phase 2.
 
 ---
 
-## 13. Open Questions
+## 12. Go-to-Market
 
-- [ ] Final brand name — Raunaq, Crayvo, Flayr, or other? (Blocks domain + Instagram)
-- [ ] Domain — .in or .com?
-- [ ] Do buyers need an account to set interests, or do we store interest preference in a cookie for anonymous users?
-- [ ] How many creator applications do we manually review before automating it?
-- [ ] What is the rejection criteria for a creator application? (Must own brand, must have physical product, must have some public presence)
+**Before writing a single line of code — validate the bio link switch.**
+
+DM 10 fashion creators. Show them a design mockup or a static example page. Ask one question: "Would you replace your current bio link with this?" If 7 out of 10 say yes, build. If fewer say yes, find out why first. The entire business depends on creators making that switch — testing it costs nothing, getting it wrong costs months.
+
+**Step 1 — Pre-launch (before self-serve exists):**
+Pick 5 fashion creators. Build their Passio pages manually — no dashboard, no auth, just static pages that look great. DM them the link. Watch what they do with it. Did they swap their Linktree? Did they share it? Did they ask for changes? That behaviour tells you more than any PRD.
+
+**Step 2 — Soft launch:**
+Open self-serve sign-ups. DM 50 fashion creators: "We built a tool for creators like you. Free. Here's what [Creator A]'s page looks like." Link to one of the 5 seeded pages. The page is the pitch — not a description of the page.
+
+**Step 3 — Content engine:**
+Start Passio's Instagram. One creator brand feature per week. Tag the creator. They reshare. Their followers discover Passio. Repeat.
+
+**Step 4 — Word of mouth:**
+A creator who gets 200 clicks in a month tells other creators. The analytics dashboard is the word-of-mouth trigger — that number is the story they share in creator WhatsApp groups.
+
+No paid ads in Phase 1. No SEO strategy (it takes 12 months). Instagram is the only channel that matters.
+
+---
+
+## 13. The Real Moat
+
+Not technology. Not design.
+
+**The moat is editorial trust.**
+
+Passio's Instagram is not just a link aggregator. It is a media brand that discovers and spotlights creator fashion brands before they go mainstream. Like Highsnobiety did for streetwear. Like Humans of Bombay did for stories.
+
+When buyers trust Passio's taste, they follow Passio's Instagram to discover new brands — not just to visit brands they already know. That is when Passio becomes a discovery engine. That is Phase 3. You build trust first. Algorithm second.
+
+The reason Instagram Shops, Myntra, and Nykaa can't replicate this: editorial taste is not a feature you ship. It is a brand you build over years.
+
+---
+
+## 14. Open Questions
+
+- [ ] **Brand name** — Raunaq, Crayvo, Flayr, or other? Blocks domain, Instagram handle, and all outreach. Decide this week.
+- [ ] **Domain** — .in or .com?
+- [ ] **First 5 creators** — Who are they? Need names before building starts so pages can be tested with real content.
+- [ ] **Creator rejection email** — What does it say exactly? Tone matters here.
+- [ ] **Photo limit per product** — 3 photos feels right. Confirm before building upload flow.
