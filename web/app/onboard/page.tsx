@@ -3,7 +3,7 @@
 import { useState, useRef, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { createBrowserClient } from '@supabase/ssr'
-import { isDemoModeClient } from '@/lib/demo-mode'
+import { isDemoModeClient } from '@/lib/demo-mode-client'
 
 // ─── Supabase ────────────────────────────────────────────────────────────────
 
