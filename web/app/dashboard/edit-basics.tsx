@@ -45,7 +45,7 @@ export function SignOutButton() {
 
 // ---- Edit Products ----
 
-function EditableProductCard({ product, instagram }: { product: Product; instagram: string | null }) {
+function EditableProductCard({ product, instagram, clickCount }: { product: Product; instagram: string | null; clickCount: number }) {
   const [open, setOpen] = useState(false)
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState<string | null>(null)
@@ -153,6 +153,9 @@ function EditableProductCard({ product, instagram }: { product: Product; instagr
           <div className="flex items-start justify-between gap-1">
             <div className="min-w-0">
               <p className="text-xs font-sans font-medium text-[#1A1A1A] line-clamp-1">{product.name}</p>
+              {clickCount > 0 && (
+                <p className="text-xs font-sans text-[#B8956A] mt-0.5">{clickCount} taps</p>
+              )}
               {product.buy_url ? (
                 <p className="text-xs font-sans text-[#A89880] truncate mt-0.5">{product.buy_url.replace('https://', '')}</p>
               ) : instagram ? (
@@ -178,7 +181,7 @@ function EditableProductCard({ product, instagram }: { product: Product; instagr
   )
 }
 
-export function EditProducts({ products, instagram }: { products: Product[]; instagram: string | null }) {
+export function EditProducts({ products, instagram, clickCounts, totalClicks: _totalClicks }: { products: Product[]; instagram: string | null; clickCounts: Record<string, number>; totalClicks: number }) {
   if (products.length === 0) {
     return (
       <div className="bg-[#EDE4D8] rounded-2xl p-5">
@@ -189,7 +192,7 @@ export function EditProducts({ products, instagram }: { products: Product[]; ins
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
       {products.map((product) => (
-        <EditableProductCard key={product.id} product={product} instagram={instagram} />
+        <EditableProductCard key={product.id} product={product} instagram={instagram} clickCount={clickCounts[product.id] ?? 0} />
       ))}
     </div>
   )

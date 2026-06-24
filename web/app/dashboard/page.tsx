@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { supabaseAdmin } from '@/lib/supabase'
 import { isDemoMode } from '@/lib/demo-mode'
 import type { Creator, Product } from '@/lib/types'
 import { SignOutButton, EditBasics, EditStory, EditProducts } from './edit-basics'
@@ -40,7 +41,7 @@ export default async function DashboardPage() {
 
   // Demo mode or local dev — show Bramarambaa mock, no DB involved
   if (await isDemoMode() || process.env.NODE_ENV === 'development') {
-    return <DashboardView creator={DEV_CREATOR} productList={DEV_PRODUCTS} />
+    return <DashboardView creator={DEV_CREATOR} productList={DEV_PRODUCTS} clickCounts={{}} totalClicks={0} />
   }
 
   const { data: { user } } = await supabase.auth.getUser()
@@ -64,10 +65,27 @@ export default async function DashboardPage() {
 
   const productList: Product[] = products ?? []
 
-  return <DashboardView creator={creator} productList={productList} />
+  // 4. Load click counts per product
+  const { data: clickData } = await supabaseAdmin
+    .from('click_events')
+    .select('product_id')
+    .eq('creator_id', creator.id)
+
+  const clickCounts: Record<string, number> = {}
+  clickData?.forEach(({ product_id }) => {
+    if (product_id) clickCounts[product_id] = (clickCounts[product_id] ?? 0) + 1
+  })
+  const totalClicks = Object.values(clickCounts).reduce((a, b) => a + b, 0)
+
+  return <DashboardView creator={creator} productList={productList} clickCounts={clickCounts} totalClicks={totalClicks} />
 }
 
-function DashboardView({ creator, productList }: { creator: Creator; productList: Product[] }) {
+function DashboardView({ creator, productList, clickCounts, totalClicks }: {
+  creator: Creator
+  productList: Product[]
+  clickCounts: Record<string, number>
+  totalClicks: number
+}) {
   const status = statusConfig[creator.status]
 
   return (
@@ -110,6 +128,11 @@ function DashboardView({ creator, productList }: { creator: Creator; productList
               </Link>
             )}
           </div>
+          {totalClicks > 0 && (
+            <p className="text-sm font-sans text-[#6B6B6B]">
+              {totalClicks} product tap{totalClicks !== 1 ? 's' : ''} total
+            </p>
+          )}
           {creator.status === 'pending' && (
             <p className="text-sm font-sans text-[#6B6B6B]">
               Your page is under review. We&apos;ll notify you once it&apos;s approved.
@@ -198,7 +221,7 @@ function DashboardView({ creator, productList }: { creator: Creator; productList
             <span className="text-xs font-sans text-[#A89880]">{productList.length} listed</span>
           </div>
 
-          <EditProducts products={productList} instagram={creator.instagram} />
+          <EditProducts products={productList} instagram={creator.instagram} clickCounts={clickCounts} totalClicks={totalClicks} />
         </section>
 
         {/* Bottom spacer */}
