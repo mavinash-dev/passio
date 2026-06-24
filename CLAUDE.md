@@ -112,11 +112,13 @@ Three themes at launch. More added based on creator requests.
 
 ## Credentials (Never Commit These)
 
-- Supabase URL: `$NEXT_PUBLIC_SUPABASE_URL`
-- Anon key: `$NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- Service role: `$SUPABASE_SERVICE_ROLE_KEY`
-- Admin secret: `$ADMIN_SECRET`
-- Old JWT keys (eyJhbGci...) are REVOKED — never use them
+All secrets live in `web/.env.local` (gitignored). Never put actual values here.
+
+- `NEXT_PUBLIC_SUPABASE_URL` — Supabase project URL
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` — Supabase publishable key
+- `SUPABASE_SERVICE_ROLE_KEY` — Supabase service role key (server-only)
+- `ADMIN_SECRET` — Admin panel password
+- Old JWT keys (`eyJhbGci...`) are REVOKED — never use them
 - `web/scripts/` is gitignored — keep it that way
 
 ---
