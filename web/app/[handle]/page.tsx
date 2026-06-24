@@ -163,15 +163,15 @@ export default async function CreatorPage({
         </nav>
 
         {/* Brand header */}
-        <div className="max-w-4xl mx-auto px-6 pt-12 pb-6">
-          <h1 className="font-display italic text-5xl md:text-7xl text-[#6B4226] leading-tight">
+        <div className="max-w-4xl mx-auto px-6 pt-6 pb-4 md:pt-12 md:pb-6">
+          <h1 className="font-display italic text-4xl sm:text-5xl md:text-7xl text-[#6B4226] leading-tight">
             {creator.brand_name}
           </h1>
           {creator.tagline && (
             <p className="text-[#6B6B6B] text-lg mt-3">{creator.tagline}</p>
           )}
           {(creator.instagram || creator.website) && (
-            <div className="flex items-center gap-5 mt-5 flex-wrap">
+            <div className="flex items-center gap-4 mt-4 flex-wrap">
               {creator.instagram && (
                 <a
                   href={`https://instagram.com/${creator.instagram}`}
@@ -229,13 +229,13 @@ export default async function CreatorPage({
 
         {/* Story */}
         {creator.story && (
-          <div className="max-w-4xl mx-auto px-6 py-12 border-t border-[#DDD0C0]">
-            <p className="text-xs tracking-[0.2em] uppercase text-[#1A1A1A] font-medium mb-10">
+          <div className="max-w-4xl mx-auto px-6 py-8 md:py-12 border-t border-[#DDD0C0]">
+            <p className="text-xs tracking-[0.2em] uppercase text-[#1A1A1A] font-medium mb-6 md:mb-10">
               The Story
             </p>
-            <div className="grid md:grid-cols-[220px_1fr] gap-8 md:gap-14 items-start">
+            <div className="grid md:grid-cols-[220px_1fr] gap-6 md:gap-14 items-start">
               {/* Portrait */}
-              <div className="relative aspect-[3/4] w-48 md:w-full rounded-sm overflow-hidden bg-[#DDD0C0]">
+              <div className="relative aspect-[3/4] w-40 sm:w-48 md:w-full rounded-sm overflow-hidden bg-[#DDD0C0]">
                 {creator.portrait_url ? (
                   <img
                     src={creator.portrait_url}
@@ -245,7 +245,7 @@ export default async function CreatorPage({
                 ) : null}
               </div>
               {/* Story text */}
-              <p className="font-display italic font-semibold text-[#1A1A1A] text-2xl leading-loose md:pt-4">
+              <p className="font-display italic font-semibold text-[#1A1A1A] text-xl md:text-2xl leading-loose md:pt-4">
                 &ldquo;{creator.story}&rdquo;
               </p>
             </div>
@@ -255,7 +255,7 @@ export default async function CreatorPage({
         {/* Collection marquee — only if there are products */}
         {products.length > 0 && (
           <div className="border-t border-[#DDD0C0]">
-            <div className="px-6 pt-8 pb-4 max-w-4xl mx-auto">
+            <div className="px-6 pt-6 pb-3 md:pt-8 md:pb-4 max-w-4xl mx-auto">
               <p className="text-xs tracking-[0.2em] uppercase text-[#1A1A1A] font-medium">
                 The Collection
               </p>

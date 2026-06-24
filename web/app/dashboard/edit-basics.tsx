@@ -190,7 +190,7 @@ export function EditProducts({ products, instagram, clickCounts, totalClicks: _t
     )
   }
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+    <div className="grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-3">
       {products.map((product) => (
         <EditableProductCard key={product.id} product={product} instagram={instagram} clickCount={clickCounts[product.id] ?? 0} />
       ))}

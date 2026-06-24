@@ -104,7 +104,7 @@ function DashboardView({ creator, productList, clickCounts, totalClicks }: {
       </nav>
 
       {/* Main content */}
-      <main className="max-w-2xl mx-auto px-6 py-10 space-y-8">
+      <main className="max-w-2xl mx-auto px-4 sm:px-6 py-6 md:py-10 space-y-6 md:space-y-8">
 
         {/* Brand name + status */}
         <div className="space-y-3">
@@ -162,7 +162,7 @@ function DashboardView({ creator, productList, clickCounts, totalClicks }: {
             <EditBasics creator={creator} />
           </div>
 
-          <div className="bg-[#EDE4D8] rounded-2xl p-5 space-y-3">
+          <div className="bg-[#EDE4D8] rounded-2xl p-4 sm:p-5 space-y-3">
             <Row label="Brand name" value={creator.brand_name} />
             <Row label="Tagline" value={creator.tagline} />
             <Row
@@ -188,7 +188,7 @@ function DashboardView({ creator, productList, clickCounts, totalClicks }: {
             <EditStory story={creator.story} />
           </div>
 
-          <div className="bg-[#EDE4D8] rounded-2xl p-5 space-y-4">
+          <div className="bg-[#EDE4D8] rounded-2xl p-4 sm:p-5 space-y-4">
             {creator.portrait_url && (
               <div className="w-20 h-20 rounded-full overflow-hidden border border-[#DDD0C0]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}

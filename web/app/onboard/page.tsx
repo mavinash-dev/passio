@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { createBrowserClient } from '@supabase/ssr'
 import { isDemoModeClient } from '@/lib/demo-mode-client'
@@ -87,17 +87,20 @@ function StepOne({
   handleTaken,
   onHandleBlur,
   onNext,
+  demo,
 }: {
   formData: FormData
   onChange: (field: keyof FormData, value: string) => void
   handleTaken: boolean
   onHandleBlur: () => void
   onNext: () => void
+  demo: boolean
 }) {
   const canProceed =
-    formData.brandName.trim().length > 0 &&
-    formData.handle.trim().length > 0 &&
-    !handleTaken
+    demo ||
+    (formData.brandName.trim().length > 0 &&
+      formData.handle.trim().length > 0 &&
+      !handleTaken)
 
   return (
     <div className="flex flex-col gap-8">
@@ -219,6 +222,7 @@ function StepTwo({
   uploading,
   onBack,
   onNext,
+  demo,
 }: {
   formData: FormData
   onChange: (field: keyof FormData, value: string) => void
@@ -226,10 +230,11 @@ function StepTwo({
   uploading: boolean
   onBack: () => void
   onNext: () => void
+  demo: boolean
 }) {
   const fileRef = useRef<HTMLInputElement>(null)
 
-  const canProceed = formData.story.trim().length > 0
+  const canProceed = demo || formData.story.trim().length > 0
 
   return (
     <div className="flex flex-col gap-8">
@@ -428,6 +433,7 @@ function StepThree({
   onBack,
   onSubmit,
   submitting,
+  demo,
 }: {
   products: Product[]
   onAddProduct: () => void
@@ -438,9 +444,10 @@ function StepThree({
   onBack: () => void
   onSubmit: () => void
   submitting: boolean
+  demo: boolean
 }) {
   const filledProducts = products.filter((p) => p.name.trim())
-  const canSubmit = filledProducts.length > 0 && !submitting
+  const canSubmit = (demo || filledProducts.length > 0) && !submitting
 
   return (
     <div className="flex flex-col gap-8">
@@ -551,6 +558,9 @@ export default function OnboardPage() {
   const [uploadingIndex, setUploadingIndex] = useState<number | null>(null)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  const [isDemo, setIsDemo] = useState(false)
+  useEffect(() => { setIsDemo(isDemoModeClient()) }, [])
 
   // ── Form field update ─────────────────────────────────────────────────────
 
@@ -731,7 +741,7 @@ export default function OnboardPage() {
       <div className="grain-overlay" aria-hidden="true" />
 
       {/* Top bar */}
-      <header className="relative z-10 px-6 pt-8 pb-0 flex items-center justify-between">
+      <header className="relative z-10 px-4 sm:px-6 pt-6 pb-0 flex items-center justify-between">
         <span className="font-passio italic text-2xl text-[#1A1A1A] tracking-tight">
           passio
         </span>
@@ -743,7 +753,7 @@ export default function OnboardPage() {
       </header>
 
       {/* Content */}
-      <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12">
+      <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-8 md:py-12">
         <div className="w-full max-w-md">
           {done ? (
             <SuccessScreen onDashboard={() => router.push('/dashboard')} />
@@ -759,6 +769,7 @@ export default function OnboardPage() {
                     handleTaken={handleTaken}
                     onHandleBlur={checkHandle}
                     onNext={goNext}
+                    demo={isDemo}
                   />
                 )}
                 {step === 2 && (
@@ -769,6 +780,7 @@ export default function OnboardPage() {
                     uploading={uploading}
                     onBack={goBack}
                     onNext={goNext}
+                    demo={isDemo}
                   />
                 )}
                 {step === 3 && (
@@ -782,6 +794,7 @@ export default function OnboardPage() {
                     onBack={goBack}
                     onSubmit={handleSubmit}
                     submitting={submitting}
+                    demo={isDemo}
                   />
                 )}
               </div>

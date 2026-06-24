@@ -57,7 +57,7 @@ export default async function HomePage() {
           <span className="font-passio italic text-xl text-[#1A1A1A]">passio</span>
           <a
             href="/join"
-            className="text-sm text-[#B8956A] hover:text-[#1A1A1A] transition-colors"
+            className="text-sm text-[#B8956A] hover:text-[#1A1A1A] transition-colors py-2"
           >
             List your brand →
           </a>
@@ -65,19 +65,19 @@ export default async function HomePage() {
       </nav>
 
       {/* Hero */}
-      <section className="max-w-4xl mx-auto px-6 pt-16 pb-12">
-        <h1 className="font-display italic text-5xl md:text-7xl text-[#1A1A1A] leading-tight">
+      <section className="max-w-4xl mx-auto px-6 pt-8 pb-8 md:pt-16 md:pb-12">
+        <h1 className="font-display italic text-4xl sm:text-5xl md:text-7xl text-[#1A1A1A] leading-tight">
           Indian fashion,
           <br />
           discovered.
         </h1>
-        <p className="text-[#6B6B6B] mt-4 text-base md:text-lg">
+        <p className="text-[#6B6B6B] mt-3 text-sm md:text-lg">
           Find the brands your feed never showed you.
         </p>
       </section>
 
       {/* Feed */}
-      <section className="max-w-4xl mx-auto px-6 pb-20">
+      <section className="max-w-4xl mx-auto px-6 pb-12 md:pb-20">
         {activeCreators.length === 0 ? (
           <div className="text-center py-20">
             <p className="font-display italic text-2xl text-[#6B4226]">Coming soon.</p>
