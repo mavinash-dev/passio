@@ -235,7 +235,7 @@ export default async function CreatorPage({
             </p>
             <div className="grid md:grid-cols-[220px_1fr] gap-6 md:gap-14 items-start">
               {/* Portrait */}
-              <div className="relative aspect-[3/4] w-40 sm:w-48 md:w-full rounded-sm overflow-hidden bg-[#E5DDD5]">
+              <div className="relative aspect-[3/4] w-full md:w-full rounded-sm overflow-hidden bg-[#E5DDD5]">
                 {creator.portrait_url ? (
                   <img
                     src={creator.portrait_url}
