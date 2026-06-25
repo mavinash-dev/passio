@@ -1,153 +1,266 @@
-# Passio — Product Roadmap
+# Passio — Vision Roadmap
+### From Discovery Platform to Fashion Brand Infrastructure
 
-**Last updated:** 2026-06-25
-**Current phase:** Phase 1 (Creator Storefront) — Live
-
----
-
-## The arc
-
-Creator storefront → Soft discovery → Personalised feed → Payments → Brand OS
+**Version:** Vision Roadmap v1
+**Time horizon:** 10+ years
 
 ---
 
-## Phase 1 — Creator Storefront ✅ Live
+## What Passio Actually Is
 
-**What it is:** A professional brand home for Indian fashion creators. Passio goes in their bio link, replaces Linktree.
+Many people will misunderstand Passio.
 
-**What's built:**
-- Creator signs up via email OTP → 3-step onboarding (brand basics, story, products)
-- Public creator page at `passio.in/[handle]` — brand name, story, product marquee
-- Redirect tracker on every product tap (`/go/[id]`) — the core analytics hook
-- Creator dashboard — total taps, per-product taps, edit brand/story/products
-- Admin approval gate — creators go live only after Avinash approves
-- Demo mode for walkthroughs without real accounts
-- Mobile-optimised throughout
+They'll think it's a creator platform, a fashion marketplace, a Shopify competitor, or a fashion discovery website.
 
-**What's NOT here yet (by design):**
-- Discovery / browse feed with real creators (0 live creators so far)
-- Category filters, search, personalization — all Phase 2+
-- Payments — Phase 4
+None of these are the final destination.
+
+**Passio's long-term vision:**
+> To become the operating system that enables anyone to build and scale a fashion brand.
+
+Not everyone who joins Passio is a creator. Some will be fashion creators, designers, boutique owners, homemakers, students, stylists, entrepreneurs, small clothing brands, or fashion enthusiasts. Some will have 1 million followers. Some will have zero. Some will have products. Some will only have an idea.
+
+**Passio should support all of them.**
 
 ---
 
-## Phase 2 — Soft Discovery
+## Core Philosophy
 
-**What it is:** Buyers can browse creators on the landing page. No accounts needed. No personalization yet — just a clean, browsable feed.
+Today, starting a fashion brand is unnecessarily difficult. A founder must figure out brand building, product design, fabric sourcing, sampling, manufacturing, inventory, warehousing, photography, content creation, distribution, ecommerce, shipping, returns, and customer support — all before they've sold a single piece.
 
-**Guiding principle:** The landing page stays a soft landing. Don't dump everything at once. Reveal depth as buyers scroll.
+Most founders fail before they even launch.
 
-### 2a — Creator Cards (the Myntra model, creator-first)
-
-The key design decision: each card in the grid = **one creator**, not one product.
-
-Instead of Myntra's colour swatches, we show the creator's actual product photos as a **horizontally scrollable strip**.
-
-```
-┌─────────────────────────────────────┐
-│ ← [img1] [img2] [img3] [img4] →    │  ← swipe/scroll through their products
-├─────────────────────────────────────┤
-│ Bramarambaa                          │  ← brand name
-│ Fashion · @bramarambaa              │  ← category tag + handle
-└─────────────────────────────────────┘
-```
-
-- Tap any product image → goes to their creator page (anchored to that product)
-- Tap brand name → goes to their creator page
-- Auto-plays or rests on first image by default
-- On desktop: hover reveals arrows. On mobile: native swipe.
-
-**Why this is better than a flat product grid:**
-- Buyers understand immediately what this creator's aesthetic is
-- You see range and variety without clicking through
-- Feels editorial, not marketplace
-
-### 2b — Category Tags
-
-Creators are tagged at sign-up: Fashion / Food / Skincare / Fitness / Home / Other.
-
-Landing page gets horizontal filter chips above the grid. Tapping a category filters in-place (no page reload — client-side filter on pre-fetched data).
-
-```
-[All]  [Fashion]  [Food]  [Skincare]  [Fitness]  [Home]
-```
-
-### 2c — Featured Row
-
-Admin can mark creators as `featured`. These appear in a curated row above the main grid with a slightly larger card treatment. Editorial pick, not algorithm.
+**Passio's mission:** Allow founders to focus on building a brand while Passio gradually handles everything else.
 
 ---
 
-## Phase 3 — Personalised Feed
+## Phase 1 — Brand Discovery Platform *(Current)*
 
-**What it is:** Buyers declare interests on first visit. Feed reorders based on declared interests + behaviour (taps, time spent).
+**What Passio is today:** A discovery platform. Not a shopping platform.
 
-### 3a — Interest Declaration (first visit)
+Passio features brands, entrepreneurs, founders, creators, and fashion startups — many of whom don't have websites, shipping, or manufacturing yet. They have vision, products, a story, and passion.
 
-On first landing, a one-tap modal:
-```
-What are you into?
-[Fashion]  [Food]  [Skincare]  [Fitness]
+A founder creates a profile, a story, a brand page, a gallery. The focus is storytelling. People connect with people, not products.
 
-→ Show me brands
-```
-Stored in localStorage (no account needed). Feed reorders immediately.
+**Customer experience:** Discover new brands, new founders, new ideas — stories, journeys, and inspiration — instead of scrolling through endless products.
 
-### 3b — Behaviour Signals
-
-- Product taps → weight category higher
-- Time on creator page → soft signal
-- "Save" / heart a brand → strong signal
-
-### 3c — Buyer Accounts (optional)
-
-- Google / Phone OTP
-- Saved brands persist across devices
-- Personalisation syncs
+**Why this phase matters:** Most marketplaces start with products. Passio starts with people. Because people build brands.
 
 ---
 
-## Phase 4 — Payments
+## Phase 2 — Community & Audience Layer
 
-**What it is:** Passio processes the transaction. Creator gets paid out. Buyers checkout without leaving the app.
+Passio evolves from discovery into community.
 
-- UPI, card, COD
-- Razorpay or Cashfree integration
-- Creator sets price per product (currently optional / not required)
-- Order confirmation to buyer (SMS/email)
-- Payout to creator (weekly, T+2)
-- Order management in creator dashboard
+**Founder:** Post updates, share journeys, publish progress, share behind-the-scenes content.
 
-**This phase is blocked on:** brand name finalised + legal entity + payment gateway KYC
+**Customer:** Follow brands, follow founders, save brands, receive updates.
+
+**Goal:** Build relationships before transactions.
 
 ---
 
-## Phase 5 — Creator Brand OS
+## Phase 3 — Brand Launch Platform
 
-**What it is:** Passio becomes the operating system for a creator brand. Not just a storefront — the full business back-end.
+This is where Passio begins transforming founders into brands.
 
-- Inventory tracking (SKU-level stock)
-- Advanced analytics (revenue, conversion, repeat buyers)
-- Brand deal matching — Passio connects creators with brands for collaborations
-- Creator community — private forum, shared supplier network
-- White-label option — `yourbrand.passio.in` or custom domain
+**Founder:** Create brand identity, brand story, brand vision, collections, moodboards. A founder should begin thinking *"I own a brand"* — not *"I own a profile."*
+
+**Customer:** Begin following brands instead of only individuals.
 
 ---
 
-## What we are NOT building (ever, or until Phase 4+)
+## Phase 4 — Demand Validation
 
-| What | Why not |
-|------|---------|
-| Drag-and-drop page builder | 12-month build. Curated themes solve this. |
-| Iframe embeds | X-Frame-Options blocks most sites. Legally grey. |
-| Affiliate / reseller listings | Not our model. Creators own their brand. |
-| SEO as launch strategy | 12–18 months to show results. Instagram first. |
-| Claimed/unclaimed profiles | Doesn't exist in our model. Creators sign up. |
+Before manufacturing comes validation.
+
+**Founder:** Create product concepts, collection concepts, and design concepts — without producing inventory.
+
+**Customer:** Join waitlists, vote, express interest.
+
+**Goal:** Measure demand before production. No wasted inventory.
 
 ---
 
-## Current blockers
+## Phase 5 — Brand Launch Services
 
-- [ ] Brand name finalised (blocks domain, Instagram, legal)
-- [ ] First 10 real creators onboarded (unlocks Phase 2 feed)
-- [ ] Vercel env vars set (SUPABASE keys) for production DB access
+Passio begins helping founders launch professionally.
+
+| Service | What |
+|---|---|
+| Product Photography | Professional shoots |
+| Lifestyle Photography | Campaign shoots |
+| Model Photography | Lookbooks |
+| Content Creation | Instagram-ready content |
+| Reels & Video | Short-form content |
+| Brand Assets | Logos, packaging, brand kits |
+
+**Goal:** A founder can launch professionally without building a marketing team.
+
+---
+
+## Phase 6 — Limited Edition Commerce
+
+Passio introduces commerce — but not mass commerce.
+
+**Founder:** Launch limited drops, small collections, exclusive products.
+
+**Customer:** Purchase directly.
+
+**Goal:** Create scarcity. Reduce inventory risk. Prove the demand validation layer works.
+
+---
+
+## Phase 7 — Brand Operating System
+
+Passio becomes software for fashion brands.
+
+**Founder dashboard:**
+- Manage products, customers, orders, revenue, analytics
+- Track sales, engagement, demand
+- Run campaigns, waitlists, launches
+
+---
+
+## Phase 8 — Design Infrastructure
+
+Passio starts helping create products.
+
+**Founder access:**
+- Fabric Library (cotton, linen, silk, denim, and more)
+- Color Library
+- Pattern Library
+- Fit Library
+- Product Builder — design products digitally
+
+**Goal:** Make product creation accessible to anyone with a vision.
+
+---
+
+## Phase 9 — Sampling Studio
+
+Ideas become physical.
+
+**Founder:** Request samples, revisions, fit testing.
+
+**Passio:** Create prototypes, samples, product validation.
+
+---
+
+## Phase 10 — Manufacturing Infrastructure
+
+Passio enters production.
+
+**Important principle:** Passio manufactures. Founders decide quantity.
+
+> Founder says: produce 100 pieces. Passio produces 100. Founder pays. Inventory belongs to the founder.
+
+Why: Passio avoids inventory risk. Founders retain ownership.
+
+---
+
+## Phase 11 — Distribution Infrastructure
+
+Passio helps founders sell.
+
+| Channel | |
+|---|---|
+| Passio Store | Sell directly on Passio |
+| Founder Store | Custom storefront |
+| Myntra / Ajio / Amazon / Nykaa Fashion | Marketplace integrations |
+| Offline | Boutiques, retail partners |
+
+**Goal:** Increase reach without the founder managing 5 different backends.
+
+---
+
+## Phase 12 — Inventory & Fulfillment Services
+
+Optional infrastructure: storage, packing, shipping, returns.
+
+**Storage policy:** Free period, then storage fees. Slow-moving inventory options: ship back, continue storage, clearance sales, or liquidation.
+
+**Goal:** Prevent warehouse overload. Keep the supply chain clean.
+
+---
+
+## Phase 13 — Passio Marketplace
+
+By now thousands of brands exist on Passio.
+
+**Customer:** Discover emerging brands, niche brands, founder-led brands.
+
+**Founder:** Gain visibility, acquire customers.
+
+**Goal:** Become the discovery engine for independent fashion brands.
+
+---
+
+## Phase 14 — Passio Studios
+
+Physical creative centers.
+
+Founders visit for photoshoots, product shoots, campaign creation, and content production.
+
+Services: photography, videography, styling, brand consulting.
+
+**Goal:** Give every founder enterprise-quality creative resources — not just the ones who can afford agencies.
+
+---
+
+## Phase 15 — Passio Brand Labs
+
+Multi-day immersive programs (2–3 days). Founders visit and work from morning to evening.
+
+**Activities:** Fabric exploration, sampling, manufacturing tours, design workshops, brand strategy sessions, launch planning, networking.
+
+**Outcome:** Founder leaves with a product roadmap, collection plan, brand strategy, and manufacturing readiness.
+
+---
+
+## Phase 16 — Passio Accelerator
+
+Selected founders enter a structured accelerator.
+
+**Support:** Mentorship, photography, manufacturing support, distribution support, growth support.
+
+**Model:** Revenue share and strategic partnerships.
+
+---
+
+## Phase 17 — Passio Retail Network
+
+Physical stores — Passio Hyderabad, Passio Bangalore, Passio Mumbai.
+
+Each location showcases multiple founder brands. Customers discover brands physically. Founders gain retail presence without the cost of their own store.
+
+---
+
+## Phase 18 — Passio Fashion Infrastructure *(End State)*
+
+**Customers believe:** "I discovered a great brand."
+
+**Founders believe:** "This is my company."
+
+Both are correct.
+
+Behind the scenes, Passio powers brand discovery, audience building, product design, photography, content creation, sampling, manufacturing, warehousing, distribution, retail, education, and growth.
+
+---
+
+## The Final Vision
+
+Passio does not exist to create another marketplace.
+
+Passio exists to create a world where anyone with a fashion vision can become a brand — a student, a creator, a designer, a boutique owner, a homemaker, an entrepreneur.
+
+Passio starts by featuring founders and brands that the world doesn't know yet. Over time it becomes the platform that helps them launch, grow, manufacture, distribute, and scale.
+
+**The final outcome is not a website. It is an ecosystem where thousands of independent brands exist, while Passio quietly provides the infrastructure that makes them possible.**
+
+---
+
+## Where We Are Now
+
+**Phase 1 — active.** Creator storefront is live. The discovery layer is built. The next milestone is getting real creators onto the platform.
+
+See `STATUS.md` for current build status and immediate tasks.
