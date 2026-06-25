@@ -14,7 +14,7 @@ import type { Creator, Product } from '@/lib/types'
 
 // ---- Shared input styles ----
 const inputClass =
-  'w-full px-3 py-2 rounded-lg text-sm font-sans bg-[#F2EBE1] border border-[#DDD0C0] text-[#1A1A1A] placeholder:text-[#A89880] focus:outline-none focus:border-[#B8956A] transition-colors'
+  'w-full px-3 py-2 rounded-lg text-sm font-sans bg-[#FAFAF8] border border-[#E5DDD5] text-[#1A1A1A] placeholder:text-[#A89880] focus:outline-none focus:border-[#B8956A] transition-colors'
 
 const labelClass = 'block text-xs font-sans font-medium text-[#6B6B6B] uppercase tracking-wider mb-1'
 
@@ -91,10 +91,10 @@ function EditableProductCard({ product, instagram, clickCount }: { product: Prod
   }
 
   return (
-    <div className="bg-[#EDE4D8] rounded-xl overflow-hidden border border-[#DDD0C0]">
+    <div className="bg-[#F0EDE8] rounded-xl overflow-hidden border border-[#E5DDD5]">
       {/* Image area — clickable to upload when in edit mode */}
       <div
-        className={`relative aspect-square bg-[#DDD0C0] ${open ? 'cursor-pointer group' : ''}`}
+        className={`relative aspect-square bg-[#E5DDD5] ${open ? 'cursor-pointer group' : ''}`}
         onClick={() => open && fileRef.current?.click()}
       >
         {previewUrl ? (
@@ -129,14 +129,14 @@ function EditableProductCard({ product, instagram, clickCount }: { product: Prod
               type="text"
               required
               defaultValue={product.name}
-              className="w-full bg-transparent border-b border-[#DDD0C0] text-xs font-sans text-[#1A1A1A] py-1 focus:outline-none focus:border-[#B8956A] transition-colors"
+              className="w-full bg-transparent border-b border-[#E5DDD5] text-xs font-sans text-[#1A1A1A] py-1 focus:outline-none focus:border-[#B8956A] transition-colors"
               placeholder="Product name"
             />
             <input
               name="buy_url"
               type="text"
               defaultValue={product.buy_url ?? ''}
-              className="w-full bg-transparent border-b border-[#DDD0C0] text-xs font-sans text-[#1A1A1A] py-1 focus:outline-none focus:border-[#B8956A] transition-colors"
+              className="w-full bg-transparent border-b border-[#E5DDD5] text-xs font-sans text-[#1A1A1A] py-1 focus:outline-none focus:border-[#B8956A] transition-colors"
               placeholder="Buy link (optional)"
             />
             {error && <p className="text-xs text-red-600 font-sans">{error}</p>}
@@ -184,7 +184,7 @@ function EditableProductCard({ product, instagram, clickCount }: { product: Prod
 export function EditProducts({ products, instagram, clickCounts, totalClicks: _totalClicks }: { products: Product[]; instagram: string | null; clickCounts: Record<string, number>; totalClicks: number }) {
   if (products.length === 0) {
     return (
-      <div className="bg-[#EDE4D8] rounded-2xl p-5">
+      <div className="bg-[#F0EDE8] rounded-2xl p-5">
         <p className="font-sans text-sm text-[#A89880] italic">No products added yet.</p>
       </div>
     )
@@ -226,7 +226,7 @@ export function EditBasics({ creator }: EditBasicsProps) {
     return (
       <button
         onClick={() => setOpen(true)}
-        className="text-xs font-sans font-medium text-[#B8956A] hover:text-[#1A1A1A] transition-colors border border-[#DDD0C0] px-3 py-1.5 rounded-full"
+        className="text-xs font-sans font-medium text-[#B8956A] hover:text-[#1A1A1A] transition-colors border border-[#E5DDD5] px-3 py-1.5 rounded-full"
       >
         Edit
       </button>
@@ -295,14 +295,14 @@ export function EditBasics({ creator }: EditBasicsProps) {
         <button
           type="submit"
           disabled={isPending}
-          className="px-4 py-2 rounded-full text-sm font-sans font-medium bg-[#1A1A1A] text-[#F2EBE1] hover:opacity-80 disabled:opacity-50 transition-opacity"
+          className="px-4 py-2 rounded-full text-sm font-sans font-medium bg-[#1A1A1A] text-[#FAFAF8] hover:opacity-80 disabled:opacity-50 transition-opacity"
         >
           {isPending ? 'Saving…' : 'Save'}
         </button>
         <button
           type="button"
           onClick={() => { setOpen(false); setError(null) }}
-          className="px-4 py-2 rounded-full text-sm font-sans font-medium text-[#6B6B6B] hover:text-[#1A1A1A] border border-[#DDD0C0] transition-colors"
+          className="px-4 py-2 rounded-full text-sm font-sans font-medium text-[#6B6B6B] hover:text-[#1A1A1A] border border-[#E5DDD5] transition-colors"
         >
           Cancel
         </button>
@@ -339,7 +339,7 @@ export function EditStory({ story }: EditStoryProps) {
     return (
       <button
         onClick={() => setOpen(true)}
-        className="text-xs font-sans font-medium text-[#B8956A] hover:text-[#1A1A1A] transition-colors border border-[#DDD0C0] px-3 py-1.5 rounded-full"
+        className="text-xs font-sans font-medium text-[#B8956A] hover:text-[#1A1A1A] transition-colors border border-[#E5DDD5] px-3 py-1.5 rounded-full"
       >
         Edit
       </button>
@@ -368,14 +368,14 @@ export function EditStory({ story }: EditStoryProps) {
         <button
           type="submit"
           disabled={isPending}
-          className="px-4 py-2 rounded-full text-sm font-sans font-medium bg-[#1A1A1A] text-[#F2EBE1] hover:opacity-80 disabled:opacity-50 transition-opacity"
+          className="px-4 py-2 rounded-full text-sm font-sans font-medium bg-[#1A1A1A] text-[#FAFAF8] hover:opacity-80 disabled:opacity-50 transition-opacity"
         >
           {isPending ? 'Saving…' : 'Save'}
         </button>
         <button
           type="button"
           onClick={() => { setOpen(false); setError(null) }}
-          className="px-4 py-2 rounded-full text-sm font-sans font-medium text-[#6B6B6B] hover:text-[#1A1A1A] border border-[#DDD0C0] transition-colors"
+          className="px-4 py-2 rounded-full text-sm font-sans font-medium text-[#6B6B6B] hover:text-[#1A1A1A] border border-[#E5DDD5] transition-colors"
         >
           Cancel
         </button>

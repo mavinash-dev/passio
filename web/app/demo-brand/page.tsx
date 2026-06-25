@@ -43,7 +43,7 @@ const BRAND = {
 
 export default function DemoBrandPage() {
   return (
-    <div className="min-h-screen bg-[#F2EBE1] relative">
+    <div className="min-h-screen bg-[#FAFAF8] relative">
 
       {/* Grain texture overlay */}
       <div className="grain-overlay" aria-hidden="true" />
@@ -53,7 +53,7 @@ export default function DemoBrandPage() {
       <div className="relative z-10">
 
       {/* Nav */}
-      <nav className="sticky top-0 z-20 bg-[#F2EBE1]/90 backdrop-blur-sm px-6 py-4">
+      <nav className="sticky top-0 z-20 bg-[#FAFAF8]/90 backdrop-blur-sm px-6 py-4">
         <span className="font-passio italic text-xl text-[#1A1A1A]">passio</span>
       </nav>
 
@@ -78,7 +78,7 @@ export default function DemoBrandPage() {
             </svg>
             {BRAND.instagram}
           </a>
-          <span className="text-[#DDD0C0]">·</span>
+          <span className="text-[#E5DDD5]">·</span>
           <a
             href={BRAND.website}
             target="_blank"
@@ -97,7 +97,7 @@ export default function DemoBrandPage() {
       </div>
 
       {/* Story */}
-      <div className="max-w-4xl mx-auto px-6 py-12 border-t border-[#DDD0C0]">
+      <div className="max-w-4xl mx-auto px-6 py-12 border-t border-[#E5DDD5]">
         <p className="text-xs tracking-[0.2em] uppercase text-[#1A1A1A] font-medium mb-10">
           The Story
         </p>
@@ -118,7 +118,7 @@ export default function DemoBrandPage() {
       </div>
 
       {/* Full-width auto-scroll marquee — images only */}
-      <div className="border-t border-[#DDD0C0]">
+      <div className="border-t border-[#E5DDD5]">
         <div className="px-6 pt-8 pb-4 max-w-4xl mx-auto">
           <p className="text-xs tracking-[0.2em] uppercase text-[#1A1A1A] font-medium">The Collection</p>
         </div>
@@ -132,7 +132,7 @@ export default function DemoBrandPage() {
                 rel="noopener noreferrer"
                 className="group flex-shrink-0 w-36 md:w-48"
               >
-                <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-[#DDD0C0]">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-[#E5DDD5]">
                   <Image
                     src={product.image}
                     alt={product.name}
@@ -141,7 +141,7 @@ export default function DemoBrandPage() {
                     sizes="192px"
                   />
                   <div className="absolute inset-0 flex items-end p-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="bg-[#F2EBE1] text-[#1A1A1A] text-xs font-medium px-3 py-1.5 rounded-full">
+                    <span className="bg-[#FAFAF8] text-[#1A1A1A] text-xs font-medium px-3 py-1.5 rounded-full">
                       Buy →
                     </span>
                   </div>

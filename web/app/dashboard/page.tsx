@@ -89,12 +89,12 @@ function DashboardView({ creator, productList, clickCounts, totalClicks }: {
   const status = statusConfig[creator.status]
 
   return (
-    <div className="min-h-screen bg-[#F2EBE1]">
+    <div className="min-h-screen bg-[#FAFAF8]">
       {/* Grain overlay */}
       <div className="grain-overlay" aria-hidden="true" />
 
       {/* Nav */}
-      <nav className="sticky top-0 z-40 bg-[#F2EBE1]/90 backdrop-blur-sm border-b border-[#DDD0C0]">
+      <nav className="sticky top-0 z-40 bg-[#FAFAF8]/90 backdrop-blur-sm border-b border-[#E5DDD5]">
         <div className="max-w-2xl mx-auto px-6 h-14 flex items-center justify-between">
           <Link href="/" className="font-passio italic text-xl text-[#1A1A1A] hover:opacity-70 transition-opacity">
             passio
@@ -153,7 +153,7 @@ function DashboardView({ creator, productList, clickCounts, totalClicks }: {
         </div>
 
         {/* Divider */}
-        <hr className="border-[#DDD0C0]" />
+        <hr className="border-[#E5DDD5]" />
 
         {/* Section: Brand Basics */}
         <section className="space-y-4">
@@ -162,7 +162,7 @@ function DashboardView({ creator, productList, clickCounts, totalClicks }: {
             <EditBasics creator={creator} />
           </div>
 
-          <div className="bg-[#EDE4D8] rounded-2xl p-4 sm:p-5 space-y-3">
+          <div className="bg-[#F0EDE8] rounded-2xl p-4 sm:p-5 space-y-3">
             <Row label="Brand name" value={creator.brand_name} />
             <Row label="Tagline" value={creator.tagline} />
             <Row
@@ -179,7 +179,7 @@ function DashboardView({ creator, productList, clickCounts, totalClicks }: {
         </section>
 
         {/* Divider */}
-        <hr className="border-[#DDD0C0]" />
+        <hr className="border-[#E5DDD5]" />
 
         {/* Section: Story */}
         <section className="space-y-4">
@@ -188,9 +188,9 @@ function DashboardView({ creator, productList, clickCounts, totalClicks }: {
             <EditStory story={creator.story} />
           </div>
 
-          <div className="bg-[#EDE4D8] rounded-2xl p-4 sm:p-5 space-y-4">
+          <div className="bg-[#F0EDE8] rounded-2xl p-4 sm:p-5 space-y-4">
             {creator.portrait_url && (
-              <div className="w-20 h-20 rounded-full overflow-hidden border border-[#DDD0C0]">
+              <div className="w-20 h-20 rounded-full overflow-hidden border border-[#E5DDD5]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={creator.portrait_url}
@@ -212,7 +212,7 @@ function DashboardView({ creator, productList, clickCounts, totalClicks }: {
         </section>
 
         {/* Divider */}
-        <hr className="border-[#DDD0C0]" />
+        <hr className="border-[#E5DDD5]" />
 
         {/* Section: Products */}
         <section className="space-y-4">

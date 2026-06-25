@@ -39,7 +39,7 @@ export default function JoinPage() {
   return (
     <main
       className="min-h-screen flex flex-col items-center justify-center px-6"
-      style={{ backgroundColor: '#F2EBE1' }}
+      style={{ backgroundColor: '#FAFAF8' }}
     >
       <div className="flex flex-col items-center gap-8 w-full max-w-sm">
         <span className="font-passio italic text-2xl" style={{ color: '#1A1A1A' }}>
@@ -71,11 +71,11 @@ export default function JoinPage() {
                 required
                 className="w-full bg-transparent border-b py-2 font-sans text-sm focus:outline-none transition-colors"
                 style={{
-                  borderColor: '#DDD0C0',
+                  borderColor: '#E5DDD5',
                   color: '#1A1A1A',
                 }}
                 onFocus={e => (e.target.style.borderColor = '#B8956A')}
-                onBlur={e => (e.target.style.borderColor = '#DDD0C0')}
+                onBlur={e => (e.target.style.borderColor = '#E5DDD5')}
               />
               {error && (
                 <p className="text-xs" style={{ color: '#B8956A' }}>{error}</p>
@@ -84,7 +84,7 @@ export default function JoinPage() {
                 type="submit"
                 disabled={loading}
                 className="w-full py-3 rounded-full font-sans text-sm font-medium transition-opacity hover:opacity-80 disabled:opacity-50"
-                style={{ backgroundColor: '#1A1A1A', color: '#F2EBE1' }}
+                style={{ backgroundColor: '#1A1A1A', color: '#FAFAF8' }}
               >
                 {loading ? 'Sending…' : 'Continue with email'}
               </button>

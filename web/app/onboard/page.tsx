@@ -57,7 +57,7 @@ function Field({
 }
 
 const inputClass =
-  'w-full bg-transparent border-b border-[#DDD0C0] py-2 text-[#1A1A1A] placeholder:text-[#A89880] focus:outline-none focus:border-[#B8956A] transition-colors font-sans text-base'
+  'w-full bg-transparent border-b border-[#E5DDD5] py-2 text-[#1A1A1A] placeholder:text-[#A89880] focus:outline-none focus:border-[#B8956A] transition-colors font-sans text-base'
 
 // ─── Progress bar ─────────────────────────────────────────────────────────────
 
@@ -68,7 +68,7 @@ function Progress({ step }: { step: 1 | 2 | 3 }) {
         <div
           key={s}
           className={`h-px flex-1 transition-colors duration-500 ${
-            s <= step ? 'bg-[#B8956A]' : 'bg-[#DDD0C0]'
+            s <= step ? 'bg-[#B8956A]' : 'bg-[#E5DDD5]'
           }`}
         />
       ))}
@@ -203,7 +203,7 @@ function StepOne({
         <button
           onClick={onNext}
           disabled={!canProceed}
-          className="flex items-center gap-2 text-sm font-sans text-[#B8956A] disabled:text-[#DDD0C0] transition-colors hover:text-[#1A1A1A] disabled:cursor-not-allowed"
+          className="flex items-center gap-2 text-sm font-sans text-[#B8956A] disabled:text-[#E5DDD5] transition-colors hover:text-[#1A1A1A] disabled:cursor-not-allowed"
         >
           Next
           <span className="text-base">→</span>
@@ -264,7 +264,7 @@ function StepTwo({
         >
           <div className="flex items-start gap-4 pt-1">
             {formData.portraitUrl ? (
-              <div className="relative w-20 h-20 rounded-sm overflow-hidden flex-shrink-0 border border-[#DDD0C0]">
+              <div className="relative w-20 h-20 rounded-sm overflow-hidden flex-shrink-0 border border-[#E5DDD5]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={formData.portraitUrl}
@@ -273,7 +273,7 @@ function StepTwo({
                 />
               </div>
             ) : (
-              <div className="w-20 h-20 rounded-sm bg-[#EDE4D8] border border-dashed border-[#DDD0C0] flex-shrink-0" />
+              <div className="w-20 h-20 rounded-sm bg-[#F0EDE8] border border-dashed border-[#E5DDD5] flex-shrink-0" />
             )}
 
             <div className="flex flex-col gap-2 pt-1">
@@ -323,7 +323,7 @@ function StepTwo({
         <button
           onClick={onNext}
           disabled={!canProceed || uploading}
-          className="flex items-center gap-2 text-sm font-sans text-[#B8956A] disabled:text-[#DDD0C0] transition-colors hover:text-[#1A1A1A] disabled:cursor-not-allowed"
+          className="flex items-center gap-2 text-sm font-sans text-[#B8956A] disabled:text-[#E5DDD5] transition-colors hover:text-[#1A1A1A] disabled:cursor-not-allowed"
         >
           Next
           <span className="text-base">→</span>
@@ -353,7 +353,7 @@ function ProductCard({
   const fileRef = useRef<HTMLInputElement>(null)
 
   return (
-    <div className="bg-[#EDE4D8] rounded-sm p-4 flex flex-col gap-4">
+    <div className="bg-[#F0EDE8] rounded-sm p-4 flex flex-col gap-4">
       <div className="flex items-start justify-between gap-3">
         <span className="text-xs uppercase tracking-widest text-[#6B6B6B] font-sans pt-0.5">
           Product {index + 1}
@@ -372,7 +372,7 @@ function ProductCard({
           <button
             onClick={() => fileRef.current?.click()}
             disabled={uploading}
-            className="w-16 h-16 rounded-sm overflow-hidden border border-dashed border-[#DDD0C0] bg-[#F2EBE1] flex items-center justify-center hover:border-[#B8956A] transition-colors"
+            className="w-16 h-16 rounded-sm overflow-hidden border border-dashed border-[#E5DDD5] bg-[#FAFAF8] flex items-center justify-center hover:border-[#B8956A] transition-colors"
             title="Upload product image"
           >
             {product.imageUrl ? (
@@ -476,7 +476,7 @@ function StepThree({
         {products.length < 6 && (
           <button
             onClick={onAddProduct}
-            className="border border-dashed border-[#DDD0C0] rounded-sm py-3 text-sm text-[#A89880] font-sans hover:border-[#B8956A] hover:text-[#B8956A] transition-colors"
+            className="border border-dashed border-[#E5DDD5] rounded-sm py-3 text-sm text-[#A89880] font-sans hover:border-[#B8956A] hover:text-[#B8956A] transition-colors"
           >
             + Add product
           </button>
@@ -495,7 +495,7 @@ function StepThree({
         <button
           onClick={onSubmit}
           disabled={!canSubmit}
-          className="flex items-center gap-2 text-sm font-sans text-[#B8956A] disabled:text-[#DDD0C0] transition-colors hover:text-[#1A1A1A] disabled:cursor-not-allowed"
+          className="flex items-center gap-2 text-sm font-sans text-[#B8956A] disabled:text-[#E5DDD5] transition-colors hover:text-[#1A1A1A] disabled:cursor-not-allowed"
         >
           {submitting ? 'Submitting…' : 'Submit'}
           {!submitting && <span className="text-base">→</span>}
@@ -510,7 +510,7 @@ function StepThree({
 function SuccessScreen({ onDashboard }: { onDashboard: () => void }) {
   return (
     <div className="flex flex-col items-center justify-center text-center gap-6 py-12">
-      <div className="w-12 h-12 rounded-full bg-[#EDE4D8] border border-[#DDD0C0] flex items-center justify-center">
+      <div className="w-12 h-12 rounded-full bg-[#F0EDE8] border border-[#E5DDD5] flex items-center justify-center">
         <span className="text-[#B8956A] text-xl">✓</span>
       </div>
       <div className="flex flex-col gap-2">
@@ -736,7 +736,7 @@ export default function OnboardPage() {
   // ── Render ────────────────────────────────────────────────────────────────
 
   return (
-    <div className="min-h-screen bg-[#F2EBE1] flex flex-col">
+    <div className="min-h-screen bg-[#FAFAF8] flex flex-col">
       {/* Grain overlay */}
       <div className="grain-overlay" aria-hidden="true" />
 

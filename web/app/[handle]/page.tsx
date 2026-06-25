@@ -122,7 +122,7 @@ export default async function CreatorPage({
   // Not found / not active
   if (!creator) {
     return (
-      <div className="min-h-screen bg-[#F2EBE1] flex items-center justify-center">
+      <div className="min-h-screen bg-[#FAFAF8] flex items-center justify-center">
         <div className="grain-overlay" aria-hidden="true" />
         <div className="relative z-10 text-center px-6">
           <p className="font-display italic text-3xl text-[#6B4226]">
@@ -147,7 +147,7 @@ export default async function CreatorPage({
     : null
 
   return (
-    <div className="min-h-screen bg-[#F2EBE1] relative">
+    <div className="min-h-screen bg-[#FAFAF8] relative">
 
       {/* Grain texture overlay */}
       <div className="grain-overlay" aria-hidden="true" />
@@ -156,7 +156,7 @@ export default async function CreatorPage({
       <div className="relative z-10">
 
         {/* Nav */}
-        <nav className="sticky top-0 z-20 bg-[#F2EBE1]/90 backdrop-blur-sm px-6 py-4">
+        <nav className="sticky top-0 z-20 bg-[#FAFAF8]/90 backdrop-blur-sm px-6 py-4">
           <a href="/" className="font-passio italic text-xl text-[#1A1A1A] hover:text-[#B8956A] transition-colors">
             passio
           </a>
@@ -197,7 +197,7 @@ export default async function CreatorPage({
                 </a>
               )}
               {creator.instagram && creator.website && (
-                <span className="text-[#DDD0C0]">·</span>
+                <span className="text-[#E5DDD5]">·</span>
               )}
               {creator.website && (
                 <a
@@ -229,13 +229,13 @@ export default async function CreatorPage({
 
         {/* Story */}
         {creator.story && (
-          <div className="max-w-4xl mx-auto px-6 py-8 md:py-12 border-t border-[#DDD0C0]">
+          <div className="max-w-4xl mx-auto px-6 py-8 md:py-12 border-t border-[#E5DDD5]">
             <p className="text-xs tracking-[0.2em] uppercase text-[#1A1A1A] font-medium mb-6 md:mb-10">
               The Story
             </p>
             <div className="grid md:grid-cols-[220px_1fr] gap-6 md:gap-14 items-start">
               {/* Portrait */}
-              <div className="relative aspect-[3/4] w-40 sm:w-48 md:w-full rounded-sm overflow-hidden bg-[#DDD0C0]">
+              <div className="relative aspect-[3/4] w-40 sm:w-48 md:w-full rounded-sm overflow-hidden bg-[#E5DDD5]">
                 {creator.portrait_url ? (
                   <img
                     src={creator.portrait_url}
@@ -254,7 +254,7 @@ export default async function CreatorPage({
 
         {/* Collection marquee — only if there are products */}
         {products.length > 0 && (
-          <div className="border-t border-[#DDD0C0]">
+          <div className="border-t border-[#E5DDD5]">
             <div className="px-6 pt-6 pb-3 md:pt-8 md:pb-4 max-w-4xl mx-auto">
               <p className="text-xs tracking-[0.2em] uppercase text-[#1A1A1A] font-medium">
                 The Collection
@@ -273,7 +273,7 @@ export default async function CreatorPage({
                       rel="noopener noreferrer"
                       className="group flex-shrink-0 w-36 md:w-48"
                     >
-                      <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-[#DDD0C0]">
+                      <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-[#E5DDD5]">
                         {product.image_url ? (
                           <img
                             src={product.image_url}
@@ -283,7 +283,7 @@ export default async function CreatorPage({
                         ) : null}
                         {hasDest && (
                           <div className="absolute inset-0 flex items-end p-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <span className="bg-[#F2EBE1] text-[#1A1A1A] text-xs font-medium px-3 py-1.5 rounded-full">
+                            <span className="bg-[#FAFAF8] text-[#1A1A1A] text-xs font-medium px-3 py-1.5 rounded-full">
                               {label}
                             </span>
                           </div>

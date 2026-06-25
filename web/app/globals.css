@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg:      #F2EBE1;
-  --color-card:    #EDE4D8;
-  --color-border:  #DDD0C0;
+  --color-bg:      #FAFAF8;
+  --color-card:    #F0EDE8;
+  --color-border:  #E5DDD5;
   --color-ink:     #1A1A1A;
   --color-muted:   #6B5F52;
   --color-faint:   #A89880;
@@ -14,7 +14,7 @@
 }
 
 body {
-  background-color: #F2EBE1;
+  background-color: #FAFAF8;
   color: #1A1A1A;
 }
 
