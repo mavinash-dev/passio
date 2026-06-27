@@ -1,3 +1,4 @@
+import ProductMarquee from './ProductMarquee'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { notFound } from 'next/navigation'
@@ -260,40 +261,7 @@ export default async function CreatorPage({
                 The Collection
               </p>
             </div>
-            <div className="marquee-track overflow-hidden pb-8">
-              <div className="animate-marquee flex gap-4 w-max">
-                {[...products, ...products].map((product, i) => {
-                  const label = product.buy_url ? 'Buy →' : 'DM to order →'
-                  const hasDest = !!(product.buy_url || creator.instagram)
-                  return (
-                    <a
-                      key={i}
-                      href={`/go/${product.id}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex-shrink-0 w-36 md:w-48"
-                    >
-                      <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-[#E5DDD5]">
-                        {product.image_url ? (
-                          <img
-                            src={product.image_url}
-                            alt={product.name}
-                            className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
-                          />
-                        ) : null}
-                        {hasDest && (
-                          <div className="absolute inset-0 flex items-end p-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <span className="bg-[#FAFAF8] text-[#1A1A1A] text-xs font-medium px-3 py-1.5 rounded-full">
-                              {label}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                    </a>
-                  )
-                })}
-              </div>
-            </div>
+            <ProductMarquee products={products} instagramHandle={creator.instagram} />
           </div>
         )}
 
