@@ -6,14 +6,16 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   let response = NextResponse.next({ request })
 
-  // Admin cookie auth (unchanged)
-  if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
-    const token = request.cookies.get('admin_session')?.value
+  // Admin cookie auth
+  if (pathname.startsWith('/admin')) {
+    // Allow the login page and the auth API through
+    if (pathname === '/admin' || pathname.startsWith('/api/admin/auth')) {
+      return response
+    }
+    const token = request.cookies.get('admin_token')?.value
     const secret = process.env.ADMIN_SECRET
     if (!secret || token !== secret) {
-      const loginUrl = new URL('/admin/login', request.url)
-      loginUrl.searchParams.set('from', pathname)
-      return NextResponse.redirect(loginUrl)
+      return NextResponse.redirect(new URL('/admin', request.url))
     }
     return response
   }
@@ -60,5 +62,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/onboard/:path*', '/dashboard/:path*', '/join'],
+  matcher: ['/admin/:path*', '/api/admin/:path*', '/onboard/:path*', '/dashboard/:path*', '/join'],
 }
