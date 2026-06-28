@@ -7,3 +7,6 @@
 # Scripts with credentials — run locally only, never commit
 web/scripts/
 .vercel
+
+# Seeding pipeline — credentials + chat exports, never commit
+seeding/
