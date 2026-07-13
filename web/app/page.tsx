@@ -42,7 +42,9 @@ export default async function HomePage() {
     .from('creators')
     .select('id, handle, brand_name, tagline, portrait_url, instagram')
     .eq('status', 'active')
-    .order('created_at', { ascending: false })
+    .order('is_featured', { ascending: false })
+    .order('feed_rank', { ascending: true, nullsFirst: false })
+    .order('brand_name', { ascending: true })
 
   const activeCreators: Creator[] = creators ?? []
 
